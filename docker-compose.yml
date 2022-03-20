@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+    folio:
+        build: .
+        restart: always
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=proxy
+            - traefik.http.routers.devleeschauwer.entrypoints=websecure
+            - traefik.http.routers.devleeschauwer.rule=Host(`devleeschauwer.fr`)
+            - traefik.http.routers.devleeschauwer.tls.certresolver=resolver
+        networks:
+            - proxy
+            - default
+
+networks:
+    proxy:
+        external: true
+    default:
+        external: false
+
+volumes:
+    devleeschauwer_db:
+        external: true
