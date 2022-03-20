@@ -1,6 +1,6 @@
 import {Tabs, Tab} from "@mui/material";
 import '../styles/Tab.css'
-const TabPanel = () => (
+const Home = () => (
     <nav className={"folio-tab"}>
         <Tabs aria-label="nav tabs"
               orientation="vertical"
@@ -16,4 +16,4 @@ const TabPanel = () => (
     </nav>
 )
 
-export default TabPanel
+export default Home
