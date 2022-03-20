@@ -1,14 +1,15 @@
 FROM node:16
 
 WORKDIR /usr/src/app
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 COPY package*.json ./
 
-RUN npm install
+ENV NODE_ENV=production
+
 RUN npm ci --only=production
+RUN npm install -g serve
 
-COPY . .
+COPY . ./
 
-EXPOSE 8080
-
-CMD [ "node", "server.js" ]
+CMD serve -s build -l 80
