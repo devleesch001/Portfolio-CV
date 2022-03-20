@@ -7,8 +7,9 @@ services:
             - traefik.enable=true
             - traefik.docker.network=proxy
             - traefik.http.routers.devleeschauwer.entrypoints=websecure
-            - traefik.http.routers.devleeschauwer.rule=Host(`devleeschauwer.fr`)
+            - traefik.http.routers.devleeschauwer.rule=Host(`devleeschauwer.fr`) || Host(`www.devleeschauwer.fr`) || (Host(`omniumcorp.fr`) && PathPrefix(`/devleeschauwer`))
             - traefik.http.routers.devleeschauwer.tls.certresolver=resolver
+            - traefik.http.services.devleeschauwer.loadbalancer.server.port=80
         networks:
             - proxy
             - default
@@ -18,7 +19,3 @@ networks:
         external: true
     default:
         external: false
-
-volumes:
-    devleeschauwer_db:
-        external: true
