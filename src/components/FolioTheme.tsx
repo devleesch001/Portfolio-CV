@@ -1,6 +1,13 @@
-import { createTheme } from '@mui/material/styles';
+import { Theme, createTheme } from '@mui/material/styles';
+import "@mui/styles";
 
-const FolioTheme = createTheme({
+declare module "@mui/styles/defaultTheme" {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface DefaultTheme extends Theme {}
+}
+
+
+const theme = createTheme({
     palette: {
         primary: {
             light: '#f05545',
@@ -17,4 +24,4 @@ const FolioTheme = createTheme({
     },
 });
 
-export default FolioTheme
+export default theme
