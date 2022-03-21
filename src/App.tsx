@@ -1,8 +1,8 @@
-import { ThemeProvider } from '@mui/material';
-import * as React from 'react';
-import TabPanel from "./components/TabPanel";
+import React from 'react';
 import Main from "./components/Main";
+import { ThemeProvider } from '@mui/material';
 import theme from "./components/FolioTheme";
+import './styles/App.css'
 
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';

@@ -12,8 +12,6 @@
 }
 
 .folio-tab {
-    color: var(--folio-primary-text-color);
-    background-color: var(--folio-primary-color);
     width: 300px;
     height: 100%;
     padding: 50px 40px 40px;
