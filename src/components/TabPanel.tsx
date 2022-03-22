@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {Tabs, Tab, AppBar} from "@mui/material";
 import '../styles/Tab.css'
-import theme from "./FolioTheme";
-import {useTheme} from "@mui/styles";
+import clsx from 'clsx';
+import {makeStyles, useTheme} from "@mui/styles";
+import {map, isEqual} from "lodash";
 
-const TabPanel = () => {
-    const [value, setValue] = React.useState('one');
+import {Title} from './Main'
+
+const a: Title = {title: "ok"}
+
+const useStyles = makeStyles((theme) => ({
+      tabItem : {
+          '&:hover': {
+              backgroundColor: theme.palette.primary.contrastText,
+              color: theme.palette.primary.main
+          },
+          color: theme.palette.primary.contrastText
+      },
+    tabItemActive : {
+        background: theme.palette.primary.contrastText
+    }
+}));
+
+const TabPanel = ({menu = []}) => {
+    const theme = useTheme();
+    const classes = useStyles();
+
+    const [value, setValue] = React.useState(1);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
@@ -13,25 +34,21 @@ const TabPanel = () => {
 
     return (
         <AppBar position="static" className={"folio-tab"}>
-            <nav>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    orientation="vertical"
-                    indicatorColor="secondary"
-                    textColor="secondary"
-                    aria-label="nav tabs"
-                >
-                    <Tab label="Home" />
-                    <Tab label="À propos de moi" />
-                    <Tab label="Etudes" />
-                    <Tab label="Experience" />
-                    <Tab label="Travail" />
-                    <Tab label="Contact" />
-                </Tabs>
-            </nav>
+            <Tabs
+                value={value}
+                onChange={handleChange}
+                orientation="vertical"
+                indicatorColor="secondary"
+                textColor="secondary"
+                aria-label="nav tabs"
+            >
+                {map(menu, ({title}, index) => (
+                    <Tab key={index} label={title} className={clsx(classes.tabItem,
+                        isEqual(index, value) && classes.tabItemActive)} />
+                ))}
+            </Tabs>
         </AppBar>
     )
 }
 
-export default TabPanel
+export default memo(TabPanel)
