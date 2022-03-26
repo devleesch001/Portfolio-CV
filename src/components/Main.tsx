@@ -17,7 +17,7 @@ const Main = () => {
     ]
 
     return (
-        <TabPanel menu={[]}/>
+        <TabPanel menu={menus}/>
     )
 }
 

@@ -1,34 +1,39 @@
 import React, { memo } from 'react';
+
 import {Tabs, Tab, AppBar} from "@mui/material";
-import '../styles/Tab.css'
-import clsx from 'clsx';
 import {makeStyles, useTheme} from "@mui/styles";
+import {Theme} from "@mui/material/styles";
+import clsx from 'clsx';
+
 import {map, isEqual} from "lodash";
 
 import {Title} from './Main'
+import '../styles/Tab.css'
 
-const a: Title = {title: "ok"}
-
-const useStyles = makeStyles((theme) => ({
-      tabItem : {
-          '&:hover': {
-              backgroundColor: theme.palette.primary.contrastText,
-              color: theme.palette.primary.main
-          },
-          color: theme.palette.primary.contrastText
-      },
+const useStyles = makeStyles((theme: Theme) => ({
+    tabItem : {
+        '&:hover': {
+            backgroundColor: theme.palette.primary.contrastText,
+            color: theme.palette.primary.main
+        },
+        color: theme.palette.primary.contrastText,
+    },
     tabItemActive : {
-        background: theme.palette.primary.contrastText
+        background: theme.palette.secondary.contrastText,
     }
 }));
 
-const TabPanel = ({menu = []}) => {
+interface Props {
+    menu: Title[]
+}
+
+const TabPanel = ({menu}: Props) => {
     const theme = useTheme();
     const classes = useStyles();
 
     const [value, setValue] = React.useState(1);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
