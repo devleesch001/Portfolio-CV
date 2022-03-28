@@ -11,10 +11,19 @@
     --folio-secondary-text-color: #ffffff;
 }
 
-.folio-tab {
+.folio-app-bar {
     width: 300px;
     height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
     padding: 50px 40px 40px;
+}
+
+.folio-tabs {
+    transform: translateY(-50%);
+    margin-top: 50vh;
 }
 
 

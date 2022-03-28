@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 
 import {Tabs, Tab, AppBar} from "@mui/material";
-import {makeStyles, useTheme} from "@mui/styles";
+import {makeStyles} from "@mui/styles";
 import {Theme} from "@mui/material/styles";
 import clsx from 'clsx';
 
@@ -11,16 +11,16 @@ import {Title} from './Main'
 import '../styles/Tab.css'
 
 const useStyles = makeStyles((theme: Theme) => ({
-    tabItem : {
+    tabItem: {
         '&:hover': {
             backgroundColor: theme.palette.primary.contrastText,
             color: theme.palette.primary.main
         },
         color: theme.palette.primary.contrastText,
     },
-    tabItemActive : {
+    tabItemActive: {
         background: theme.palette.secondary.contrastText,
-    }
+    },
 }));
 
 interface Props {
@@ -28,7 +28,6 @@ interface Props {
 }
 
 const TabPanel = ({menu}: Props) => {
-    const theme = useTheme();
     const classes = useStyles();
 
     const [value, setValue] = React.useState(1);
@@ -38,7 +37,7 @@ const TabPanel = ({menu}: Props) => {
     };
 
     return (
-        <AppBar position="static" className={"folio-tab"}>
+        <AppBar position="static" className={"folio-app-bar"}>
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -46,10 +45,12 @@ const TabPanel = ({menu}: Props) => {
                 indicatorColor="secondary"
                 textColor="secondary"
                 aria-label="nav tabs"
+                className={"folio-tabs"}
             >
                 {map(menu, ({title}, index) => (
-                    <Tab key={index} label={title} className={clsx(classes.tabItem,
-                        isEqual(index, value) && classes.tabItemActive)} />
+                    <Tab key={index} label={title} className={
+                        clsx(classes.tabItem, isEqual(index, value) && classes.tabItemActive)
+                    }/>
                 ))}
             </Tabs>
         </AppBar>
