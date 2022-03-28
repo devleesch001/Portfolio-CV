@@ -1,5 +1,7 @@
-import React from "react";
+import React, {memo} from "react";
 import TabPanel from "./TabPanel";
+import {Paper} from "@mui/material";
+import Home from "./Home";
 
 export interface Title {
     title: string;
@@ -17,8 +19,11 @@ const Main = () => {
     ]
 
     return (
-        <TabPanel menu={menus}/>
+        <Paper>
+            <TabPanel menu={menus}/>
+            <Home />
+        </Paper>
     )
 }
 
-export default Main;
+export default memo(Main);

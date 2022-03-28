@@ -15,6 +15,8 @@ const cache = createCache({
 const App = () => {
     return (
         <CacheProvider value={cache}>
+            <link rel="icon" href="public/favicon.ico"/>
+
             <ThemeProvider theme={theme}>
                 <Main />
             </ThemeProvider>

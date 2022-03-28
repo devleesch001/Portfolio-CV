@@ -1,19 +1,20 @@
-import {Tabs, Tab} from "@mui/material";
-import '../styles/Tab.css'
-const Home = () => (
-    <nav className={"folio-tab"}>
-        <Tabs aria-label="nav tabs"
-              orientation="vertical"
-              textColor="primary"
-        >
-            <Tab label="Home" color={"#ffffff"} />
-            <Tab label="À propos de moi" />
-            <Tab label="Etudes" />
-            <Tab label="Experience" />
-            <Tab label="Travail" />
-            <Tab label="Contact" />
-        </Tabs>
-    </nav>
-)
+import React, {memo} from "react";
 
-export default Home
+import {Container} from "@mui/material";
+import Avatar from '@mui/material/Avatar';
+
+import '../styles/App.css'
+
+const Home = () => {
+
+    return (
+        <Container className={"folio-home"}>
+            Hello World!
+            <Avatar>H</Avatar>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} src="../static/images/avatar/alexis.jpg" />*/}
+        </Container>
+    );
+}
+
+export default memo(Home)
