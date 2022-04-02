@@ -1,6 +1,9 @@
 import React, {memo} from 'react';
 
-import {Tabs, Tab, AppBar} from "@mui/material";
+import {Tabs, Tab, AppBar, Toolbar, IconButton} from "@mui/material";
+
+import MenuIcon from '@mui/icons-material/Menu';
+
 import {makeStyles} from "@mui/styles";
 import {Theme} from "@mui/material/styles";
 import clsx from 'clsx';
@@ -38,6 +41,17 @@ const TabPanel = ({menu}: Props) => {
 
     return (
         <AppBar position="static" className={"folio-app-bar"}>
+            <Toolbar>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                >
+                    <MenuIcon />
+                </IconButton>
+            </Toolbar>
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -46,9 +60,10 @@ const TabPanel = ({menu}: Props) => {
                 textColor="secondary"
                 aria-label="nav tabs"
                 className={"folio-tabs"}
+                selectionFollowsFocus
             >
-                {map(menu, ({title}, index) => (
-                    <Tab key={index} label={title} className={
+                {map(menu, ({title, icon}, index) => (
+                    <Tab key={index} label={title} icon={icon} iconPosition={"start"} className={
                         clsx(classes.tabItem, isEqual(index, value) && classes.tabItemActive)
                     }/>
                 ))}
