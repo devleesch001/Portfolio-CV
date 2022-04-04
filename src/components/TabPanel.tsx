@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 
-import {Tabs, Tab, AppBar, Toolbar, IconButton} from "@mui/material";
+import {Tabs, Tab, Toolbar, IconButton, Drawer, Box} from "@mui/material";
 
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -12,6 +12,8 @@ import {map, isEqual} from "lodash";
 
 import {Title} from './Main'
 import '../styles/Tab.css'
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => ({
     tabItem: {
@@ -28,9 +30,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
     menu: Title[]
+    window?: () => Window;
 }
 
-const TabPanel = ({menu}: Props) => {
+const TabPanel = ({menu, window}: Props) => {
     const classes = useStyles();
 
     const [value, setValue] = React.useState(1);
@@ -39,8 +42,14 @@ const TabPanel = ({menu}: Props) => {
         setValue(newValue);
     };
 
-    return (
-        <AppBar position="static" className={"folio-app-bar"}>
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    const drawer = (
+        <>
             <Toolbar>
                 <IconButton
                     size="large"
@@ -68,7 +77,49 @@ const TabPanel = ({menu}: Props) => {
                     }/>
                 ))}
             </Tabs>
-        </AppBar>
+        </>
+    )
+
+    const container = window !== undefined ? () => window().document.body : undefined;
+
+    return (
+        <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            aria-label="mailbox folders"
+        >
+            <Drawer
+                container={container}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true // Better open performance on mobile.
+                }}
+                sx={{
+                    display: { xs: "block", sm: "none" },
+                    "& .MuiDrawer-paper": {
+                        boxSizing: "border-box",
+                        width: drawerWidth
+                    }
+                }}
+            >
+                {drawer}
+            </Drawer>
+            <Drawer
+                variant="permanent"
+                sx={{
+                    display: { xs: "none", sm: "block" },
+                    "& .MuiDrawer-paper": {
+                        boxSizing: "border-box",
+                        width: drawerWidth
+                    }
+                }}
+                open
+            >
+                {drawer}
+            </Drawer>
+        </Box>
     )
 }
 
