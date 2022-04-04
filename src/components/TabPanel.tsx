@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 
-import {Tabs, Tab, Toolbar, IconButton, Drawer, Box} from "@mui/material";
+import {Tabs, Tab, Toolbar, Drawer, Box} from "@mui/material";
 
-import MenuIcon from '@mui/icons-material/Menu';
+import Home from "./Home";
 
 import {makeStyles} from "@mui/styles";
 import {Theme} from "@mui/material/styles";
@@ -16,6 +16,9 @@ import '../styles/Tab.css'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => ({
+    drawer: {
+        backgroundColor: "red",
+    },
     tabItem: {
         '&:hover': {
             backgroundColor: theme.palette.primary.contrastText,
@@ -49,18 +52,7 @@ const TabPanel = ({menu, window}: Props) => {
     };
 
     const drawer = (
-        <>
-            <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                >
-                    <MenuIcon />
-                </IconButton>
-            </Toolbar>
+        <div>
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -77,48 +69,58 @@ const TabPanel = ({menu, window}: Props) => {
                     }/>
                 ))}
             </Tabs>
-        </>
+        </div>
     )
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box
-            component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="mailbox folders"
-        >
-            <Drawer
-                container={container}
-                variant="temporary"
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                    keepMounted: true // Better open performance on mobile.
-                }}
-                sx={{
-                    display: { xs: "block", sm: "none" },
-                    "& .MuiDrawer-paper": {
-                        boxSizing: "border-box",
-                        width: drawerWidth
-                    }
-                }}
+        <Box sx={{display: 'flex'}}>
+            <Box
+                component="nav"
+                sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
+                aria-label="mailbox folders"
             >
-                {drawer}
-            </Drawer>
-            <Drawer
-                variant="permanent"
-                sx={{
-                    display: { xs: "none", sm: "block" },
-                    "& .MuiDrawer-paper": {
-                        boxSizing: "border-box",
-                        width: drawerWidth
-                    }
-                }}
-                open
+                <Drawer
+                    container={container}
+                    variant="temporary"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true // Better open performance on mobile.
+                    }}
+                    sx={{
+                        display: {xs: "block", sm: "none"},
+                        "& .MuiDrawer-paper": {
+                            boxSizing: "border-box",
+                            width: drawerWidth
+                        }
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+                <Drawer
+                    variant="permanent"
+                    sx={{
+                        display: {xs: "none", sm: "block"},
+                        "& .MuiDrawer-paper": {
+                            boxSizing: "border-box",
+                            width: drawerWidth
+                        }
+                    }}
+                    open
+                >
+                    {drawer}
+                </Drawer>
+            </Box>
+            <Box
+                component="main"
+                sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
             >
-                {drawer}
-            </Drawer>
+                <Toolbar/>
+                <Home />
+
+            </Box>
         </Box>
     )
 }

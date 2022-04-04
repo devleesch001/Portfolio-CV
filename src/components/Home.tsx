@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 
-import {Container, Avatar} from "@mui/material";
+import {Container, Avatar, Typography} from "@mui/material";
 
 import meImage from "../static/images/avatar/alexis.jpg";
 
@@ -10,7 +10,9 @@ const Home = () => {
 
     return (
         <Container className={"folio-home"}>
-            Hello World!
+            <Typography>
+                Hello World!
+            </Typography>
             <Avatar
                 alt="Alexis DEVLEESCHAUWER"
                 src={meImage}

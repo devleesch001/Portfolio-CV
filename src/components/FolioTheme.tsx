@@ -7,7 +7,7 @@ declare module "@mui/styles/defaultTheme" {
 }
 
 
-const theme = createTheme({
+let theme = createTheme({
     palette: {
         primary: {
             light: '#f05545',
@@ -23,5 +23,18 @@ const theme = createTheme({
         },
     },
 });
+
+theme = {
+    ...theme,
+    components: {
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    background: theme.palette.primary.main,
+                }
+            }
+        }
+    }
+}
 
 export default theme
