@@ -1,8 +1,9 @@
-import React, {memo} from 'react';
+import React, {memo, ReactElement} from 'react';
 
-import {Tabs, Tab, Toolbar, Drawer, Box} from "@mui/material";
+import {Tabs, Tab, Toolbar, Box, AppBar, Typography, IconButton} from "@mui/material";
+import {Drawer, Slide, useScrollTrigger} from "@mui/material";
 
-import Home from "./Home";
+import MenuIcon from '@mui/icons-material/Menu';
 
 import {makeStyles} from "@mui/styles";
 import {Theme} from "@mui/material/styles";
@@ -32,21 +33,39 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    menu: Title[]
-    window?: () => Window;
+    menu: Title[],
+    children: ReactElement,
+    window?: () => Window,
 }
 
-const TabPanel = ({menu, window}: Props) => {
+const HideOnScroll = (props: Props) => {
+
+    const {children, window} = props
+
+    const trigger = useScrollTrigger({
+        target: window ? window() : undefined,
+    });
+
+    return (
+        <Slide appear={false} direction="down" in={!trigger}>
+            {children}
+        </Slide>
+    );
+}
+
+const TabPanel = (props: Props) => {
+    const {menu, children, window} = props;
+
     const classes = useStyles();
 
+    /* Tabs trigger */
     const [value, setValue] = React.useState(1);
-
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
+    /* mobile detect */
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -76,6 +95,31 @@ const TabPanel = ({menu, window}: Props) => {
 
     return (
         <Box sx={{display: 'flex'}}>
+            <HideOnScroll {...props}>
+                <AppBar
+                    position="fixed"
+                    sx={{
+                        width: {sm: `calc(100% - ${drawerWidth}px)`},
+                        ml: {sm: `${drawerWidth}px`},
+                    }}
+                >
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{mr: 2, display: {sm: 'none'}}}
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography variant="h6" noWrap component="div">
+                            Portfolio of Alexis DEVLEESCHAUWER (wip)
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+            </HideOnScroll>
+
             <Box
                 component="nav"
                 sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
@@ -118,7 +162,7 @@ const TabPanel = ({menu, window}: Props) => {
                 sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
             >
                 <Toolbar/>
-                <Home />
+                {children}
 
             </Box>
         </Box>

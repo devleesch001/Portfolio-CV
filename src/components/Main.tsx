@@ -1,5 +1,7 @@
 import React, {memo, ReactElement} from "react";
 import TabPanel from "./TabPanel";
+import Home from "./Home";
+
 import {Paper} from "@mui/material";
 
 import HomeIcon from '@mui/icons-material/Home';
@@ -27,7 +29,7 @@ const Main = () => {
 
     return (
         <Paper>
-            <TabPanel menu={menus}/>
+            <TabPanel menu={menus} children={<><Home /></>}/>
 
         </Paper>
     )
