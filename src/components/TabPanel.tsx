@@ -1,8 +1,6 @@
-import React, {memo} from 'react';
+import React, {memo, ReactElement} from 'react';
 
 import {Tabs, Tab, Toolbar, Drawer, Box} from "@mui/material";
-
-import Home from "./Home";
 
 import {makeStyles} from "@mui/styles";
 import {Theme} from "@mui/material/styles";
@@ -12,8 +10,6 @@ import {map, isEqual} from "lodash";
 
 import {Title} from './Main'
 import '../styles/Tab.css'
-
-const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) => ({
     drawer: {
@@ -32,11 +28,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    menu: Title[]
-    window?: () => Window;
+    menu: Title[],
+    cotent: ReactElement,
+    window?: () => Window,
 }
 
-const TabPanel = ({menu, window}: Props) => {
+const drawerWidth = 300;
+
+const TabPanel = ({menu, cotent, window}: Props) => {
     const classes = useStyles();
 
     const [value, setValue] = React.useState(1);
@@ -78,7 +77,8 @@ const TabPanel = ({menu, window}: Props) => {
         <Box sx={{display: 'flex'}}>
             <Box
                 component="nav"
-                sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
+                sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}, padding: {sm: 50}}}
+
                 aria-label="mailbox folders"
             >
                 <Drawer
@@ -118,7 +118,7 @@ const TabPanel = ({menu, window}: Props) => {
                 sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
             >
                 <Toolbar/>
-                <Home />
+                {cotent}
 
             </Box>
         </Box>

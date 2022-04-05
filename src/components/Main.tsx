@@ -9,6 +9,8 @@ import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import WorkIcon from '@mui/icons-material/Work';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
+import Home from "./Home";
+
 export interface Title {
     title: string,
     icon: ReactElement,
@@ -27,7 +29,7 @@ const Main = () => {
 
     return (
         <Paper>
-            <TabPanel menu={menus}/>
+            <TabPanel menu={menus} cotent={<Home />}/>
 
         </Paper>
     )
