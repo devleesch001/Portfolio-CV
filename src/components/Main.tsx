@@ -1,9 +1,12 @@
 import React, {memo, ReactElement} from "react";
+
+import {t} from "i18next";
+
 import TabPanel from "./TabPanel";
 import Home from "./Home";
+import About from "./About";
 
-import {Paper} from "@mui/material";
-
+import {Alert, Paper} from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
@@ -19,17 +22,23 @@ export interface Title {
 const Main = () => {
 
     const menus: Title[] = [
-        {title: "Home", icon: <HomeIcon />},
-        {title: "À propos de moi", icon: <AssignmentIndIcon />},
-        {title: "Etudes", icon: <SchoolIcon />},
-        {title: "Experience", icon: <PlagiarismIcon />},
-        {title: "Travail", icon: <WorkIcon />},
-        {title: "Contact", icon: <ContactsIcon />},
+        {title: t("title.home"), icon: <HomeIcon />},
+        {title: t("title.about"), icon: <AssignmentIndIcon />},
+        {title: t("title.study"), icon: <SchoolIcon />},
+        {title: t("title.project"), icon: <PlagiarismIcon />},
+        {title: t("title.work"), icon: <WorkIcon />},
+        {title: t("title.contact"), icon: <ContactsIcon />},
     ]
 
     return (
         <Paper>
-            <TabPanel menu={menus} children={<><Home /></>}/>
+            <TabPanel menu={menus} children={
+                <>
+                    <Alert severity="error"> WIP! </Alert>
+                    <Home />
+                    <About />
+                </>
+            }/>
 
         </Paper>
     )

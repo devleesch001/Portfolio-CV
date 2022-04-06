@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Main from "./components/Main";
+
 import { ThemeProvider } from '@mui/material';
 import theme from "./components/FolioTheme";
 import './styles/App.css'
@@ -16,7 +18,6 @@ const App = () => {
     return (
         <CacheProvider value={cache}>
             <ThemeProvider theme={theme}>
-                <p style={{textAlign: "center"}} >work in progress..!</p>
                 <Main />
             </ThemeProvider>
         </CacheProvider>

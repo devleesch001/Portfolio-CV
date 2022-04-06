@@ -1,5 +1,7 @@
 import React, {memo, ReactElement} from 'react';
 
+import { useTranslation } from "react-i18next";
+
 import {Tabs, Tab, Toolbar, Box, AppBar, Typography, IconButton} from "@mui/material";
 import {Drawer, Slide, useScrollTrigger} from "@mui/material";
 
@@ -56,6 +58,7 @@ const HideOnScroll = (props: Props) => {
 const TabPanel = (props: Props) => {
     const {menu, children, window} = props;
 
+    const { t } = useTranslation();
     const classes = useStyles();
 
     /* Tabs trigger */
@@ -95,6 +98,9 @@ const TabPanel = (props: Props) => {
 
     return (
         <Box sx={{display: 'flex'}}>
+
+
+            {/* header bar */}
             <HideOnScroll {...props}>
                 <AppBar
                     position="fixed"
@@ -114,16 +120,17 @@ const TabPanel = (props: Props) => {
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
-                            Portfolio of Alexis DEVLEESCHAUWER (wip)
+                            {t( "appbar.title" )}
                         </Typography>
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
 
+            {/* navbar left */}
             <Box
                 component="nav"
                 sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
-                aria-label="mailbox folders"
+                aria-label="navbar box"
             >
                 <Drawer
                     container={container}

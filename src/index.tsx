@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import './i18n/i18next';
+import './i18n/i18next';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
