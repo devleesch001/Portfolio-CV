@@ -1,11 +1,7 @@
-import React, {memo, ReactElement} from 'react';
+import React, {FC, memo} from 'react';
 
-import { useTranslation } from "react-i18next";
-
-import {Tabs, Tab, Toolbar, Box, AppBar, Typography, IconButton} from "@mui/material";
-import {Drawer, Slide, useScrollTrigger} from "@mui/material";
-
-import MenuIcon from '@mui/icons-material/Menu';
+import {Tabs, Tab, Toolbar, Box} from "@mui/material";
+import {Drawer} from "@mui/material";
 
 import {makeStyles} from "@mui/styles";
 import {Theme} from "@mui/material/styles";
@@ -13,7 +9,8 @@ import clsx from 'clsx';
 
 import {map, isEqual} from "lodash";
 
-import {Title} from './Main'
+import {NavProps} from './Main';
+
 import '../styles/Tab.css'
 
 const drawerWidth = 240;
@@ -34,43 +31,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-interface Props {
-    menu: Title[],
-    children: ReactElement,
-    window?: () => Window,
-}
+const NavPanel:FC<NavProps> = (props) => {
+    const {menu, mobileOpen, handleDrawerToggle, window} = props;
 
-const HideOnScroll = (props: Props) => {
-
-    const {children, window} = props
-
-    const trigger = useScrollTrigger({
-        target: window ? window() : undefined,
-    });
-
-    return (
-        <Slide appear={false} direction="down" in={!trigger}>
-            {children}
-        </Slide>
-    );
-}
-
-const TabPanel = (props: Props) => {
-    const {menu, children, window} = props;
-
-    const { t } = useTranslation();
     const classes = useStyles();
 
     /* Tabs trigger */
     const [value, setValue] = React.useState(1);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
-    };
-
-    /* mobile detect */
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
     };
 
     const drawer = (
@@ -86,6 +55,7 @@ const TabPanel = (props: Props) => {
                 selectionFollowsFocus
             >
                 {map(menu, ({title, icon}, index) => (
+
                     <Tab key={index} label={title} icon={icon} iconPosition={"start"} className={
                         clsx(classes.tabItem, isEqual(index, value) && classes.tabItemActive)
                     }/>
@@ -98,35 +68,6 @@ const TabPanel = (props: Props) => {
 
     return (
         <Box sx={{display: 'flex'}}>
-
-
-            {/* header bar */}
-            <HideOnScroll {...props}>
-                <AppBar
-                    position="fixed"
-                    sx={{
-                        width: {sm: `calc(100% - ${drawerWidth}px)`},
-                        ml: {sm: `${drawerWidth}px`},
-                    }}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                            sx={{mr: 2, display: {sm: 'none'}}}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" noWrap component="div">
-                            {t( "appbar.title" )}
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </HideOnScroll>
-
-            {/* navbar left */}
             <Box
                 component="nav"
                 sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
@@ -169,11 +110,10 @@ const TabPanel = (props: Props) => {
                 sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
             >
                 <Toolbar/>
-                {children}
 
             </Box>
         </Box>
     )
 }
 
-export default memo(TabPanel)
+export default memo(NavPanel)

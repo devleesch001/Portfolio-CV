@@ -16,7 +16,7 @@ const About = () => {
             mx: "auto",
         }}
         >
-            <Typography>
+            <Typography align={"justify"}>
                 { t("about.content") }
                 { t("about.content") }
                 { t("about.content") }
