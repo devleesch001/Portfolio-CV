@@ -1,4 +1,4 @@
-import React, {FC, Fragment, memo, ReactElement} from "react";
+import React, {FC, Fragment, ReactElement} from "react";
 
 import {t} from "i18next";
 
@@ -6,8 +6,9 @@ import TabPanel from "./NavPanel";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import About from "./About";
+import { appConst } from '../App';
 
-import {Grid, Paper, Slide, useScrollTrigger} from "@mui/material";
+import {Grid, Paper} from "@mui/material";
 
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
@@ -28,26 +29,7 @@ export interface NavProps {
     window?: () => Window,
 }
 
-interface Props {
-    window?: () => Window;
-    children: React.ReactElement;
-}
-
-function HideOnScroll(props: Props) {
-    const { children, window } = props;
-
-    const trigger = useScrollTrigger({
-        target: window ? window() : undefined,
-    });
-
-    return (
-        <Slide appear={false} direction="down" in={!trigger}>
-            {children}
-        </Slide>
-    );
-}
-
-const Main:FC = (props ) => {
+const Main: FC = () => {
 
     const menus: Title[] = [
         {title: t("title.home"), icon: <HomeIcon/>},
@@ -66,13 +48,11 @@ const Main:FC = (props ) => {
 
     return (
         <Fragment>
-            {/*<HideOnScroll {...props}>*/}
-                <NavBar handleDrawerToggle={handleDrawerToggle}/>
-            {/*</HideOnScroll>*/}
+            <NavBar handleDrawerToggle={handleDrawerToggle}/>
             <TabPanel menu={menus} mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/>
             <Paper>
                 <Grid container sx={{
-                    paddingLeft: {xs: "40px", sm: "280px"},
+                    paddingLeft: {xs: "40px", sm: `${appConst.drawerWidth + 40}px`},
                     paddingRight: "40px"
                 }}
                 >
@@ -85,4 +65,4 @@ const Main:FC = (props ) => {
     )
 }
 
-export default memo(Main);
+export default Main;

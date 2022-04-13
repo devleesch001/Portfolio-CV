@@ -1,43 +1,41 @@
 import React, {FC, memo} from 'react';
 
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
-import {AppBar, Toolbar, Typography, IconButton} from "@mui/material";
+import {AppBar, Toolbar, Typography, useScrollTrigger, Slide, IconButton} from "@mui/material";
+import { appConst } from '../App';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
-const drawerWidth = 240;
+const NavBar:FC<{handleDrawerToggle: any}> = ({handleDrawerToggle}) => {
+    const trigger = useScrollTrigger();
 
-const NavBar:FC<{ handleDrawerToggle: any }> = (props) => {
-
-    const {handleDrawerToggle} = props;
-
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
-
-        <AppBar
-            position="fixed"
-            sx={{
-                width: {sm: `calc(100% - ${drawerWidth}px)`},
-                ml: {sm: `${drawerWidth}px`},
-            }}
-        >
-            <Toolbar>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{mr: 2, display: {sm: 'none'}}}
-                >
-                    <MenuIcon/>
-                </IconButton>
-                <Typography variant="h6" noWrap component="div">
-                    {t("appbar.title")}
-                </Typography>
-            </Toolbar>
-        </AppBar>
+        <Slide appear={false} direction="down" in={!trigger}>
+            <AppBar
+                position="fixed"
+                sx={{
+                    width: {sm: `calc(100% - ${appConst.drawerWidth}px)`},
+                    ml: {sm: `${appConst.drawerWidth}px`},
+                }}>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{mr: 2, display: {sm: 'none'}}}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" noWrap component="div">
+                        {t("appbar.title")}
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+        </Slide>
     );
 }
 

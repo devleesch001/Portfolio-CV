@@ -9,16 +9,12 @@ import clsx from 'clsx';
 
 import {map, isEqual} from "lodash";
 
-import {NavProps} from './Main';
+import {NavProps, Title} from './Main';
+import {appConst} from '../App';
 
 import '../styles/Tab.css'
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme: Theme) => ({
-    drawer: {
-        backgroundColor: "red",
-    },
     tabItem: {
         '&:hover': {
             backgroundColor: theme.palette.primary.contrastText,
@@ -31,8 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-const NavPanel:FC<NavProps> = (props) => {
-    const {menu, mobileOpen, handleDrawerToggle, window} = props;
+const DrawerContent:FC<{menu: Title[]}> = ({menu}) => {
 
     const classes = useStyles();
 
@@ -42,27 +37,27 @@ const NavPanel:FC<NavProps> = (props) => {
         setValue(newValue);
     };
 
-    const drawer = (
-        <div>
-            <Tabs
-                value={value}
-                onChange={handleChange}
-                orientation="vertical"
-                indicatorColor="secondary"
-                textColor="secondary"
-                aria-label="nav tabs"
-                className={"folio-tabs"}
-                selectionFollowsFocus
-            >
-                {map(menu, ({title, icon}, index) => (
+    return (
+        <Tabs
+              value={value}
+              onChange={handleChange}
+              orientation="vertical"
+              indicatorColor="secondary"
+              textColor="secondary"
+              aria-label="nav tabs"
+              className={"folio-tabs"}
+              selectionFollowsFocus
+        >
+            {map(menu, ({title, icon}, index) => (
 
-                    <Tab key={index} label={title} icon={icon} iconPosition={"start"} className={
-                        clsx(classes.tabItem, isEqual(index, value) && classes.tabItemActive)
-                    }/>
-                ))}
-            </Tabs>
-        </div>
-    )
+                <Tab key={index} label={title} icon={icon} iconPosition={"start"} className={
+                    clsx(classes.tabItem, isEqual(index, value) && classes.tabItemActive)
+                }/>
+            ))}
+        </Tabs>)
+}
+
+const NavPanel: FC<NavProps> = ({mobileOpen, handleDrawerToggle, window, ...rest}) => {
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -70,7 +65,7 @@ const NavPanel:FC<NavProps> = (props) => {
         <Box sx={{display: 'flex'}}>
             <Box
                 component="nav"
-                sx={{width: {sm: drawerWidth}, flexShrink: {sm: 0}}}
+                sx={{width: {sm: appConst.drawerWidth}, flexShrink: {sm: 0}}}
                 aria-label="navbar box"
             >
                 <Drawer
@@ -85,11 +80,11 @@ const NavPanel:FC<NavProps> = (props) => {
                         display: {xs: "block", sm: "none"},
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
-                            width: drawerWidth
+                            width: appConst.drawerWidth
                         }
                     }}
                 >
-                    {drawer}
+                    <DrawerContent {...rest} />
                 </Drawer>
                 <Drawer
                     variant="permanent"
@@ -97,17 +92,17 @@ const NavPanel:FC<NavProps> = (props) => {
                         display: {xs: "none", sm: "block"},
                         "& .MuiDrawer-paper": {
                             boxSizing: "border-box",
-                            width: drawerWidth
+                            width: appConst.drawerWidth
                         }
                     }}
                     open
                 >
-                    {drawer}
+                    <DrawerContent {...rest} />
                 </Drawer>
             </Box>
             <Box
                 component="main"
-                sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${drawerWidth}px)`}}}
+                sx={{flexGrow: 1, p: 3, width: {sm: `calc(100% - ${appConst.drawerWidth}px)`}}}
             >
                 <Toolbar/>
 
