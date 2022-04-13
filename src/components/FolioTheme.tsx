@@ -1,11 +1,10 @@
-import { Theme, createTheme } from '@mui/material/styles';
-import "@mui/styles";
+import { createTheme, Theme } from '@mui/material/styles';
+import '@mui/styles';
 
-declare module "@mui/styles/defaultTheme" {
+declare module '@mui/styles/defaultTheme' {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface DefaultTheme extends Theme {}
 }
-
 
 let theme = createTheme({
     palette: {
@@ -31,10 +30,10 @@ theme = {
             styleOverrides: {
                 paper: {
                     background: theme.palette.primary.main,
-                }
-            }
-        }
-    }
-}
+                },
+            },
+        },
+    },
+};
 
-export default theme
+export default theme;
