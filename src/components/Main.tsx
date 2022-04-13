@@ -8,7 +8,7 @@ import Home from './Home';
 import About from './About';
 import { appConst } from '../App';
 
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
@@ -24,7 +24,9 @@ export interface Title {
 export interface NavProps {
     menu: Title[];
     mobileOpen: boolean;
+
     handleDrawerToggle(): void;
+
     window?: () => Window;
 }
 
@@ -46,7 +48,10 @@ const Main: FC = () => {
 
     return (
         <Fragment>
-            <NavBar handleDrawerToggle={handleDrawerToggle} />
+            <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+                <NavBar handleDrawerToggle={handleDrawerToggle} />
+            </Box>
+
             <TabPanel menu={menus} mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
 
             <Grid
