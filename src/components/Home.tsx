@@ -13,7 +13,11 @@ const Home = () => {
     return (
         <Box sx={{ height: '50vh' }}>
             <Box sx={{ marginTop: '50vh', transform: 'translateY(-100%)' }}>
-                <Avatar alt={`${t('me.firstname')} ${t('me.name')}`} src={meImage} sx={{ mx: 'auto', width: 256, height: 256 }} />
+                <Avatar
+                    alt={`${t('me.firstname')} ${t('me.name')}`}
+                    src={meImage}
+                    sx={{ mx: 'auto', width: 256, height: 256 }}
+                />
                 <Typography variant="h4" align="center">
                     {t('me.firstname')} {t('me.name')}
                 </Typography>

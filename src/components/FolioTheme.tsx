@@ -1,12 +1,7 @@
 import { createTheme, Theme } from '@mui/material/styles';
 import '@mui/styles';
 
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface DefaultTheme extends Theme {}
-}
-
-let theme = createTheme({
+let theme: Theme = createTheme({
     palette: {
         primary: {
             light: '#f05545',

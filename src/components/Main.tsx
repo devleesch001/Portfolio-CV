@@ -47,7 +47,7 @@ const Main: FC = () => {
 
     return (
         <Fragment>
-            <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+            <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
                 <NavBar handleDrawerToggle={handleDrawerToggle} />
             </Box>
 
@@ -57,7 +57,7 @@ const Main: FC = () => {
                 container
                 justifyContent="center"
                 sx={{
-                    paddingLeft: { xs: '40px', sm: `${appConst.drawerWidth + 40}px` },
+                    paddingLeft: { xs: '40px', lg: `${appConst.drawerWidth + 40}px` },
                     paddingRight: '40px',
                     mx: 'auto',
                 }}

@@ -64,7 +64,11 @@ const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...res
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <Box component="nav" sx={{ width: { sm: appConst.drawerWidth }, flexShrink: { sm: 0 } }} aria-label="navbar box">
+            <Box
+                component="nav"
+                sx={{ width: { lg: appConst.drawerWidth }, flexShrink: { lg: 0 } }}
+                aria-label="navbar box"
+            >
                 <Drawer
                     container={container}
                     variant="temporary"
@@ -74,7 +78,7 @@ const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...res
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
+                        display: { xs: 'block', lg: 'none' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: appConst.drawerWidth,
@@ -86,7 +90,7 @@ const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...res
                 <Drawer
                     variant="permanent"
                     sx={{
-                        display: { xs: 'none', sm: 'block' },
+                        display: { xs: 'none', lg: 'block' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: appConst.drawerWidth,
@@ -97,7 +101,7 @@ const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...res
                     <DrawerContent {...rest} />
                 </Drawer>
             </Box>
-            <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${appConst.drawerWidth}px)` } }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3, width: { lg: `calc(100% - ${appConst.drawerWidth}px)` } }}>
                 <Toolbar />
             </Box>
         </Box>

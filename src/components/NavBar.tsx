@@ -17,8 +17,8 @@ const NavBar: FC<{ handleDrawerToggle(): void }> = ({ handleDrawerToggle }) => {
             <AppBar
                 position="fixed"
                 sx={{
-                    width: { sm: `calc(100% - ${appConst.drawerWidth}px)` },
-                    ml: { sm: `${appConst.drawerWidth}px` },
+                    width: { lg: `calc(100% - ${appConst.drawerWidth}px)` },
+                    ml: { lg: `${appConst.drawerWidth}px` },
                 }}
             >
                 <Toolbar>
@@ -27,7 +27,7 @@ const NavBar: FC<{ handleDrawerToggle(): void }> = ({ handleDrawerToggle }) => {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { lg: 'none' } }}
                     >
                         <MenuIcon />
                     </IconButton>
