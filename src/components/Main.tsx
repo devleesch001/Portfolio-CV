@@ -24,10 +24,9 @@ export interface Title {
 export interface NavProps {
     menu: Title[];
     mobileOpen: boolean;
+    window?: () => Window;
 
     handleDrawerToggle(): void;
-
-    window?: () => Window;
 }
 
 const Main: FC = () => {
