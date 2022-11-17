@@ -1,26 +1,33 @@
 import React from 'react';
-import Main from "./components/Main";
+
+import Main from './components/Main';
+
 import { ThemeProvider } from '@mui/material';
-import theme from "./components/FolioTheme";
-import './styles/App.css'
+import theme from './components/FolioTheme';
+import './styles/App.css';
 
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 const cache = createCache({
     key: 'css',
-    prepend: true
+    prepend: true,
 });
+
+export interface Provider {
+    drawerWidth: number;
+}
+
+export const appConst: Provider = { drawerWidth: 240 };
 
 const App = () => {
     return (
         <CacheProvider value={cache}>
             <ThemeProvider theme={theme}>
-                <p style={{textAlign: "center"}} >work in progress..!</p>
                 <Main />
             </ThemeProvider>
         </CacheProvider>
     );
-}
+};
 
 export default App;

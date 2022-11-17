@@ -1,7 +1,14 @@
-import React, {memo, ReactElement} from "react";
-import TabPanel from "./TabPanel";
-import {Paper} from "@mui/material";
+import React, { FC, Fragment, ReactElement } from 'react';
 
+import { t } from 'i18next';
+
+import TabPanel from './NavPanel';
+import NavBar from './NavBar';
+import Home from './Home';
+import About from './About';
+import { appConst } from '../App';
+
+import { Box, Grid } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
@@ -9,30 +16,61 @@ import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import WorkIcon from '@mui/icons-material/Work';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
-import Home from "./Home";
-
 export interface Title {
-    title: string,
-    icon: ReactElement,
+    title: string;
+    icon: ReactElement;
 }
 
-const Main = () => {
+export interface NavProps {
+    menu: Title[];
+    mobileOpen: boolean;
+    window?: () => Window;
 
+    handleDrawerToggle(): void;
+}
+
+const Main: FC = () => {
     const menus: Title[] = [
-        {title: "Home", icon: <HomeIcon />},
-        {title: "À propos de moi", icon: <AssignmentIndIcon />},
-        {title: "Etudes", icon: <SchoolIcon />},
-        {title: "Experience", icon: <PlagiarismIcon />},
-        {title: "Travail", icon: <WorkIcon />},
-        {title: "Contact", icon: <ContactsIcon />},
-    ]
+        { title: t('title.home'), icon: <HomeIcon /> },
+        { title: t('title.about'), icon: <AssignmentIndIcon /> },
+        { title: t('title.study'), icon: <SchoolIcon /> },
+        { title: t('title.project'), icon: <PlagiarismIcon /> },
+        { title: t('title.work'), icon: <WorkIcon /> },
+        { title: t('title.contact'), icon: <ContactsIcon /> },
+    ];
+
+    /* mobile detect */
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
 
     return (
-        <Paper>
-            <TabPanel menu={menus} cotent={<Home />}/>
+        <Fragment>
+            <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
+                <NavBar handleDrawerToggle={handleDrawerToggle} />
+            </Box>
 
-        </Paper>
-    )
-}
+            <TabPanel menu={menus} mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
 
-export default memo(Main);
+            <Grid
+                container
+                justifyContent="center"
+                sx={{
+                    paddingLeft: { xs: '40px', lg: `${appConst.drawerWidth + 40}px` },
+                    paddingRight: '40px',
+                    mx: 'auto',
+                }}
+            >
+                <Grid item>
+                    <Home />
+                </Grid>
+                <Grid item>
+                    <About />
+                </Grid>
+            </Grid>
+        </Fragment>
+    );
+};
+
+export default Main;

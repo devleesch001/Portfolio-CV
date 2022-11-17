@@ -1,0 +1,17 @@
+{
+    "appbar": {
+        "title": "Portfolio of Alexis"
+    },
+    "title": {
+        "home": "Home",
+        "about": "About Me",
+        "study": "Student",
+        "project": "Project",
+        "work": "Work",
+        "contact": "Contact"
+    },
+    "home": {
+        "content": "test of content",
+        "content2": "test 2"
+    }
+}
