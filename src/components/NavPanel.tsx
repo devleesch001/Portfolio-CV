@@ -1,14 +1,15 @@
 import React, { FC, memo } from 'react';
 
-import { Box, Drawer, Tab, Tabs, Toolbar } from '@mui/material';
+import { isEqual, map } from 'lodash';
+import useScrollSpy from 'react-use-scrollspy';
 
+import { Box, Drawer, Tab, Tabs, Toolbar } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+
 import { Theme } from '@mui/material/styles';
 import clsx from 'clsx';
 
-import { isEqual, map } from 'lodash';
-
-import { NavProps, Title } from './Main';
+import { Title } from './Main';
 import { appConst } from '../App';
 
 import '../styles/Tab.css';
@@ -26,18 +27,26 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-const DrawerContent: FC<{ menu: Title[] }> = ({ menu }) => {
+interface DrawerContentInterface {
+    menu: Title[];
+    sectionRefs: React.MutableRefObject<null>[];
+}
+const DrawerContent: FC<DrawerContentInterface> = (props) => {
+    const { menu, sectionRefs } = props;
+
     const classes = useStyles();
 
     /* Tabs trigger */
-    const [value, setValue] = React.useState(1);
+    // const [value, setValue] = React.useState(0);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
+        // setValue(newValue);
     };
+
+    const activeIndex = useScrollSpy({ sectionElementRefs: sectionRefs, offsetPx: -80 });
 
     return (
         <Tabs
-            value={value}
+            value={activeIndex}
             onChange={handleChange}
             orientation="vertical"
             indicatorColor="secondary"
@@ -52,14 +61,24 @@ const DrawerContent: FC<{ menu: Title[] }> = ({ menu }) => {
                     label={title}
                     icon={icon}
                     iconPosition={'start'}
-                    className={clsx(classes.tabItem, isEqual(index, value) && classes.tabItemActive)}
+                    className={clsx(classes.tabItem, isEqual(index, activeIndex) && classes.tabItemActive)}
                 />
             ))}
         </Tabs>
     );
 };
 
-const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...rest }) => {
+export interface NavProps {
+    menu: Title[];
+    mobileOpen: boolean;
+    window?: () => Window;
+    sectionRefs: React.MutableRefObject<null>[];
+
+    handleDrawerToggle(): void;
+}
+const NavPanel: FC<NavProps> = (props) => {
+    const { menu, mobileOpen, window, sectionRefs, handleDrawerToggle } = props;
+
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
@@ -85,7 +104,7 @@ const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...res
                         },
                     }}
                 >
-                    <DrawerContent {...rest} />
+                    <DrawerContent menu={menu} sectionRefs={sectionRefs} />
                 </Drawer>
                 <Drawer
                     variant="permanent"
@@ -98,7 +117,7 @@ const NavPanel: FC<NavProps> = ({ mobileOpen, handleDrawerToggle, window, ...res
                     }}
                     open
                 >
-                    <DrawerContent {...rest} />
+                    <DrawerContent menu={menu} sectionRefs={sectionRefs} />
                 </Drawer>
             </Box>
             <Box component="main" sx={{ flexGrow: 1, p: 3, width: { lg: `calc(100% - ${appConst.drawerWidth}px)` } }}>

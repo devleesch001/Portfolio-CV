@@ -25,10 +25,40 @@ const About = () => {
             </Grid>
 
             <Grid item>
-                <Typography align={'justify'}>
-                    <p>aaaaaaa</p>
-                    {t('about.content')}
-                </Typography>
+                <Typography align={'justify'}>{t('about.content')}</Typography>
+            </Grid>
+
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
+            </Grid>
+            <Grid item>
+                <Typography align={'justify'}>{t('dev.content')}</Typography>
             </Grid>
         </Grid>
     );

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, ReactElement } from 'react';
+import React, { FC, ReactElement, useRef } from 'react';
 
 import { t } from 'i18next';
 
@@ -17,26 +17,19 @@ import WorkIcon from '@mui/icons-material/Work';
 import ContactsIcon from '@mui/icons-material/Contacts';
 
 export interface Title {
+    hash: string;
     title: string;
     icon: ReactElement;
 }
 
-export interface NavProps {
-    menu: Title[];
-    mobileOpen: boolean;
-    window?: () => Window;
-
-    handleDrawerToggle(): void;
-}
-
 const Main: FC = () => {
     const menus: Title[] = [
-        { title: t('title.home'), icon: <HomeIcon /> },
-        { title: t('title.about'), icon: <AssignmentIndIcon /> },
-        { title: t('title.study'), icon: <SchoolIcon /> },
-        { title: t('title.project'), icon: <PlagiarismIcon /> },
-        { title: t('title.work'), icon: <WorkIcon /> },
-        { title: t('title.contact'), icon: <ContactsIcon /> },
+        { hash: 'home-panel', title: t('title.home'), icon: <HomeIcon /> },
+        { hash: 'about-panel', title: t('title.about'), icon: <AssignmentIndIcon /> },
+        { hash: 'study-panel', title: t('title.study'), icon: <SchoolIcon /> },
+        { hash: 'project-panel', title: t('title.project'), icon: <PlagiarismIcon /> },
+        { hash: 'work-panel', title: t('title.work'), icon: <WorkIcon /> },
+        { hash: 'contact-panel', title: t('title.contact'), icon: <ContactsIcon /> },
     ];
 
     /* mobile detect */
@@ -45,13 +38,20 @@ const Main: FC = () => {
         setMobileOpen(!mobileOpen);
     };
 
+    const sectionRefs = [useRef(null), useRef(null), useRef(null)];
+
     return (
-        <Fragment>
+        <>
             <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
                 <NavBar handleDrawerToggle={handleDrawerToggle} />
             </Box>
 
-            <TabPanel menu={menus} mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+            <TabPanel
+                menu={menus}
+                mobileOpen={mobileOpen}
+                sectionRefs={sectionRefs}
+                handleDrawerToggle={handleDrawerToggle}
+            />
 
             <Grid
                 container
@@ -62,14 +62,14 @@ const Main: FC = () => {
                     mx: 'auto',
                 }}
             >
-                <Grid item>
+                <Grid key={0} ref={sectionRefs[0]} item>
                     <Home />
                 </Grid>
-                <Grid item>
+                <Grid key={1} ref={sectionRefs[1]} item>
                     <About />
                 </Grid>
             </Grid>
-        </Fragment>
+        </>
     );
 };
 
