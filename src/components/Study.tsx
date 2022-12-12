@@ -41,6 +41,7 @@ const Study = () => {
                     xs: { flex: 0, padding: 0 },
                     md: { flex: 'auto', padding: ['6px', '16px'] },
                 },
+                padding: { xs: 0 },
             }}
             onResize={undefined}
             onResizeCapture={undefined}
@@ -53,7 +54,7 @@ const Study = () => {
                         </TimelineDot>
                         <TimelineConnector />
                     </TimelineSeparator>
-                    <TimelineContent>
+                    <TimelineContent sx={{ paddingRight: { xs: 0 } }}>
                         <Paper elevation={3}>
                             <Box p={2}>
                                 <Typography>{element.school}</Typography>

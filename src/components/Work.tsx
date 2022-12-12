@@ -11,6 +11,7 @@ import {
     TimelineContent,
     TimelineDot,
     timelineItemClasses,
+    TimelineOppositeContent,
 } from '@mui/lab';
 
 import '../styles/App.css';
@@ -27,7 +28,7 @@ interface workInterface {
 const workList: workInterface[] = [
     {
         date: '2020 - 2022',
-        title: 'Apprentissage développeur Web, Back-end -1 an et demis',
+        title: 'Apprentissage Développeur Web, Back-end | 18 mois',
         company: 'NumericWave',
         subject: 'PHP8 Projet symfony, Api restful API-Platforme',
         city: 'Perpignan',
@@ -84,22 +85,31 @@ const Work = () => {
                     xs: { flex: 0, padding: 0 },
                     md: { flex: 'auto', padding: ['6px', '16px'] },
                 },
+                padding: { xs: 0 },
             }}
             onResize={undefined}
             onResizeCapture={undefined}
         >
             {workList.map((element, index) => (
                 <TimelineItem key={index}>
+                    {!isSmallScreen && (
+                        <TimelineOppositeContent>
+                            <Box p={1}>
+                                <Typography variant={'h5'}>{element.date}</Typography>
+                            </Box>
+                        </TimelineOppositeContent>
+                    )}
+
                     <TimelineSeparator>
                         <TimelineDot variant="outlined">
                             <WorkIcon />
                         </TimelineDot>
                         <TimelineConnector />
                     </TimelineSeparator>
-                    <TimelineContent>
+                    <TimelineContent sx={{ paddingRight: { xs: 0 } }}>
                         <Paper elevation={3}>
                             <Box p={2}>
-                                <Typography variant={'h5'}>{element.date}</Typography>
+                                {isSmallScreen && <Typography variant={'h5'}>{element.date}</Typography>}
                                 <Typography variant={'h6'}>{element.company}</Typography>
                                 <Typography>{element.title}</Typography>
                                 <Typography>{element.subject}</Typography>

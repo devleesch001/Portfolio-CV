@@ -67,8 +67,8 @@ const Main: FC = () => {
                 container
                 justifyContent="center"
                 sx={{
-                    paddingLeft: { xs: '40px', lg: `${appConst.drawerWidth + 40}px` },
-                    paddingRight: '40px',
+                    paddingLeft: { xs: 2, lg: `${appConst.drawerWidth + 40}px` },
+                    paddingRight: { xs: 2, lg: '40px' },
                     mx: 'auto',
                 }}
             >
