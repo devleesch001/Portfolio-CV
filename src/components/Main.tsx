@@ -42,7 +42,13 @@ const Main: FC = () => {
         setMobileOpen(!mobileOpen);
     };
 
-    const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+    const sectionRefs: React.MutableRefObject<HTMLDivElement | null>[] = [
+        useRef<HTMLDivElement | null>(null),
+        useRef<HTMLDivElement | null>(null),
+        useRef<HTMLDivElement | null>(null),
+        useRef<HTMLDivElement | null>(null),
+        useRef<HTMLDivElement | null>(null),
+    ];
 
     return (
         <>

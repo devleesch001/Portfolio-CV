@@ -29,25 +29,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface DrawerContentInterface {
     menu: Title[];
-    sectionRefs: React.MutableRefObject<null>[];
+    sectionRefs: React.MutableRefObject<HTMLDivElement | null>[];
 }
 const DrawerContent: FC<DrawerContentInterface> = (props) => {
     const { menu, sectionRefs } = props;
 
     const classes = useStyles();
 
-    /* Tabs trigger */
-    // const [value, setValue] = React.useState(0);
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        // setValue(newValue);
-    };
-
     const activeIndex = useScrollSpy({ sectionElementRefs: sectionRefs, offsetPx: -80 });
 
     return (
         <Tabs
             value={activeIndex}
-            onChange={handleChange}
             orientation="vertical"
             indicatorColor="secondary"
             textColor="secondary"
@@ -58,6 +51,7 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
             {map(menu, ({ title, icon }, index) => (
                 <Tab
                     key={index}
+                    onClick={() => sectionRefs[index]?.current?.scrollIntoView({ behavior: 'smooth' })}
                     label={title}
                     icon={icon}
                     iconPosition={'start'}
@@ -71,7 +65,7 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
 export interface NavProps {
     menu: Title[];
     mobileOpen: boolean;
-    sectionRefs: React.MutableRefObject<null>[];
+    sectionRefs: React.MutableRefObject<HTMLDivElement | null>[];
     handleDrawerToggle(): void;
     window?: () => Window;
 }
