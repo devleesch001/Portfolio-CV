@@ -39,7 +39,7 @@ const Study = () => {
             sx={{
                 [`& .${timelineItemClasses.root}:before`]: {
                     xs: { flex: 0, padding: 0 },
-                    md: { flex: 'auto', padding: ['6px', '16px'] },
+                    md: { flex: 'auto', padding: ['6px', '8px'] },
                 },
                 padding: { xs: 0 },
             }}
@@ -54,7 +54,13 @@ const Study = () => {
                         </TimelineDot>
                         <TimelineConnector />
                     </TimelineSeparator>
-                    <TimelineContent sx={{ paddingRight: { xs: 0 } }}>
+
+                    <TimelineContent
+                        sx={{
+                            paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
+                            paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
+                        }}
+                    >
                         <Paper elevation={3}>
                             <Box p={2}>
                                 <Typography>{element.school}</Typography>

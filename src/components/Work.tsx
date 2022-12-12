@@ -83,7 +83,11 @@ const Work = () => {
             sx={{
                 [`& .${timelineItemClasses.root}:before`]: {
                     xs: { flex: 0, padding: 0 },
-                    md: { flex: 'auto', padding: ['6px', '16px'] },
+                    md: { flex: 'auto', padding: ['6px', '8px'] },
+                },
+                [`& .${timelineItemClasses.root}:after`]: {
+                    xs: { flex: 0, padding: 0 },
+                    md: { flex: 'auto', padding: ['6px', '8px'] },
                 },
                 padding: { xs: 0 },
             }}
@@ -93,7 +97,13 @@ const Work = () => {
             {workList.map((element, index) => (
                 <TimelineItem key={index}>
                     {!isSmallScreen && (
-                        <TimelineOppositeContent>
+                        <TimelineOppositeContent
+                            sx={{
+                                paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
+                                paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
+                            }}
+                            variant={'h5'}
+                        >
                             <Box p={1}>
                                 <Typography variant={'h5'}>{element.date}</Typography>
                             </Box>
@@ -106,7 +116,12 @@ const Work = () => {
                         </TimelineDot>
                         <TimelineConnector />
                     </TimelineSeparator>
-                    <TimelineContent sx={{ paddingRight: { xs: 0 } }}>
+                    <TimelineContent
+                        sx={{
+                            paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
+                            paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
+                        }}
+                    >
                         <Paper elevation={3}>
                             <Box p={2}>
                                 {isSmallScreen && <Typography variant={'h5'}>{element.date}</Typography>}
