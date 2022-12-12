@@ -31,8 +31,8 @@ const Main: FC = () => {
         { hash: 'home-panel', title: t('title.home'), icon: <HomeIcon /> },
         { hash: 'about-panel', title: t('title.about'), icon: <AssignmentIndIcon /> },
         { hash: 'study-panel', title: t('title.study'), icon: <SchoolIcon /> },
-        { hash: 'project-panel', title: t('title.project'), icon: <PlagiarismIcon /> },
         { hash: 'work-panel', title: t('title.work'), icon: <WorkIcon /> },
+        { hash: 'project-panel', title: t('title.project'), icon: <PlagiarismIcon /> },
         { hash: 'contact-panel', title: t('title.contact'), icon: <ContactsIcon /> },
     ];
 
@@ -78,14 +78,37 @@ const Main: FC = () => {
                 <Grid key={1} ref={sectionRefs[1]} item xs={12}>
                     <About />
                 </Grid>
-                <Grid key={2} ref={sectionRefs[2]} item xs={12} sm={10}>
+                <Grid
+                    key={2}
+                    ref={sectionRefs[2]}
+                    item
+                    xs={12}
+                    sm={8}
+                    md={5}
+                    marginTop={10}
+                    sx={{
+                        marginLeft: { md: 5 },
+                    }}
+                >
                     <Study />
                 </Grid>
-                <Grid key={3} ref={sectionRefs[3]} item xs={12} sm={10}>
-                    <Project />
-                </Grid>
-                <Grid key={4} ref={sectionRefs[4]} item xs={12} sm={10}>
+                <Grid md={1}></Grid>
+                <Grid
+                    key={3}
+                    ref={sectionRefs[3]}
+                    item
+                    xs={12}
+                    sm={8}
+                    md={5}
+                    marginTop={10}
+                    sx={{
+                        marginRight: { md: 5 },
+                    }}
+                >
                     <Work />
+                </Grid>
+                <Grid key={4} ref={sectionRefs[4]} item xs={12} sm={8}>
+                    <Project />
                 </Grid>
             </Grid>
         </>
