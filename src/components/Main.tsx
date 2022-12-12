@@ -108,7 +108,7 @@ const Main: FC = () => {
                     <Work />
                 </Grid>
                 <Grid key={4} ref={sectionRefs[4]} item xs={12} sm={8}>
-                    <Project />
+                    {/*<Project />*/}
                 </Grid>
             </Grid>
         </>

@@ -12,7 +12,7 @@ ENV NODE_ENV=production
 
 RUN npm install -g npm@${NPM_VERSION}
 RUN npm install -g serve
-RUN npm ci --only=production
+RUN npm install
 
 COPY . ./
 
