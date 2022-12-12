@@ -18,7 +18,7 @@ const About = () => {
                 </Grid>
 
                 <Grid item>
-                    <Box sx={{ justifyContent: 'center' }}>
+                    <Box justifyContent={'center'}>
                         <Avatar
                             alt={`${t('me.firstname')} ${t('me.name')}`}
                             src={meImage}

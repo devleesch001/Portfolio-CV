@@ -7,6 +7,9 @@ import NavBar from './NavBar';
 import Home from './Home';
 import About from './About';
 import Study from './Study';
+import Project from './Project';
+import Work from './Work';
+
 import { appConst } from '../App';
 
 import { Box, Grid } from '@mui/material';
@@ -16,7 +19,6 @@ import SchoolIcon from '@mui/icons-material/School';
 import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import WorkIcon from '@mui/icons-material/Work';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import Project from './Project';
 
 export interface Title {
     hash: string;
@@ -40,7 +42,7 @@ const Main: FC = () => {
         setMobileOpen(!mobileOpen);
     };
 
-    const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+    const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 
     return (
         <>
@@ -70,11 +72,14 @@ const Main: FC = () => {
                 <Grid key={1} ref={sectionRefs[1]} item xs={12}>
                     <About />
                 </Grid>
-                <Grid key={2} ref={sectionRefs[2]} item xs={10}>
+                <Grid key={2} ref={sectionRefs[2]} item xs={12} sm={10}>
                     <Study />
                 </Grid>
-                <Grid key={2} ref={sectionRefs[3]} item xs={10}>
+                <Grid key={3} ref={sectionRefs[3]} item xs={12} sm={10}>
                     <Project />
+                </Grid>
+                <Grid key={4} ref={sectionRefs[4]} item xs={12} sm={10}>
+                    <Work />
                 </Grid>
             </Grid>
         </>

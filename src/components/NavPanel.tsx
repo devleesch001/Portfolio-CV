@@ -71,15 +71,16 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
 export interface NavProps {
     menu: Title[];
     mobileOpen: boolean;
-    window?: () => Window;
     sectionRefs: React.MutableRefObject<null>[];
-
     handleDrawerToggle(): void;
+    window?: () => Window;
 }
 const NavPanel: FC<NavProps> = (props) => {
-    const { menu, mobileOpen, window, sectionRefs, handleDrawerToggle } = props;
+    const { menu, mobileOpen, sectionRefs, handleDrawerToggle, window } = props;
 
     const container = window !== undefined ? () => window().document.body : undefined;
+
+    console.log(container);
 
     return (
         <Box sx={{ display: 'flex' }}>

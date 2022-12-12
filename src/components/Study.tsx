@@ -1,26 +1,51 @@
 import React, { memo } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { useTheme } from '@mui/material/styles';
+import { Paper, Typography, useMediaQuery } from '@mui/material';
 
-import { Avatar, Box, Grid, Paper, Typography } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
+import {
+    Timeline,
+    TimelineItem,
+    TimelineSeparator,
+    TimelineConnector,
+    TimelineContent,
+    TimelineDot,
+    timelineItemClasses,
+} from '@mui/lab';
 
 import '../styles/App.css';
 
-const studyList = [
+interface studyInterface {
+    school: string;
+    degree: string;
+    city: string;
+}
+
+const studyList: studyInterface[] = [
     { school: 'IMERIR', degree: 'Manager système informatique et robotique', city: 'Perpignan' },
     { school: 'CERTIFICATION  Simplon.co', degree: "Développeur d'objet connecté", city: 'LABEGE INNOPOLE' },
     { school: 'LPO JULES FIL', degree: 'BTS Système Numérique Informatique et Réseaux', city: 'CARCASSONNE 11' },
     { school: 'LPO JULES FIL', degree: 'BAC PRO SEN TR', city: 'CARCASSONNE 11' },
 ];
 const Study = () => {
-    const { t } = useTranslation();
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <Paper elevation={3}>
-            <Timeline position="alternate" onResize={undefined} onResizeCapture={undefined}>
+            <Timeline
+                position={isSmallScreen ? 'right' : 'alternate'}
+                sx={{
+                    [`& .${timelineItemClasses.root}:before`]: {
+                        xs: { flex: 0, padding: 0 },
+                        md: { flex: 'auto', padding: ['6px', '16px'] },
+                    },
+                }}
+                onResize={undefined}
+                onResizeCapture={undefined}
+            >
                 {studyList.map((element, index) => (
                     <TimelineItem key={index}>
                         <TimelineSeparator>
