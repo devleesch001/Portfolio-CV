@@ -7,7 +7,7 @@ import NavBar from './NavBar';
 import Home from './Home';
 import About from './About';
 import Study from './Study';
-import Project from './Project';
+import Projects from './Projects';
 import Work from './Work';
 
 import { appConst } from '../App';
@@ -72,16 +72,15 @@ const Main: FC = () => {
                     mx: 'auto',
                 }}
             >
-                <Grid key={0} ref={sectionRefs[0]} item xs={12}>
+                <Grid item key={0} ref={sectionRefs[0]} xs={12}>
                     <Home />
                 </Grid>
-                <Grid key={1} ref={sectionRefs[1]} item xs={12}>
+                <Grid item key={1} ref={sectionRefs[1]} xs={12}>
                     <About />
                 </Grid>
                 <Grid
-                    key={2}
-                    ref={sectionRefs[2]}
                     item
+                    ref={sectionRefs[2]}
                     xs={12}
                     sm={8}
                     md={5}
@@ -94,9 +93,9 @@ const Main: FC = () => {
                 </Grid>
                 <Grid md={1}></Grid>
                 <Grid
+                    item
                     key={3}
                     ref={sectionRefs[3]}
-                    item
                     xs={12}
                     sm={8}
                     md={5}
@@ -107,8 +106,8 @@ const Main: FC = () => {
                 >
                     <Work />
                 </Grid>
-                <Grid key={4} ref={sectionRefs[4]} item xs={12} sm={8}>
-                    {/*<Project />*/}
+                <Grid item key={4} ref={sectionRefs[4]} xs={12} sm={8}>
+                    <Projects />
                 </Grid>
             </Grid>
         </>

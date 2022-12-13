@@ -1,0 +1,26 @@
+/* Parent Container */
+.img-content {
+    position: relative;
+    float: left;
+}
+
+/* Child Text Container */
+.img-content .img-mask{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--folio-primary-color);
+    opacity: 0;
+    transition: all 1s cubic-bezier(.075,.82,.165,1);
+}
+
+.img-content:hover .img-mask{
+    opacity: 0.5;
+    transition: all 1s cubic-bezier(.075,.82,.165,1);
+}
+
+.img-content:hover{
+    cursor: pointer;
+}
