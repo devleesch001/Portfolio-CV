@@ -69,8 +69,8 @@ const Main: FC = () => {
                 sx={{
                     paddingLeft: { xs: 2, lg: `${appConst.drawerWidth + 40}px` },
                     paddingRight: { xs: 2, lg: '40px' },
-                    mx: 'auto',
                 }}
+                spacing={2}
             >
                 <Grid item key={0} ref={sectionRefs[0]} xs={12}>
                     <Home />
@@ -78,35 +78,13 @@ const Main: FC = () => {
                 <Grid item key={1} ref={sectionRefs[1]} xs={12}>
                     <About />
                 </Grid>
-                <Grid
-                    item
-                    ref={sectionRefs[2]}
-                    xs={12}
-                    sm={8}
-                    md={5}
-                    marginTop={10}
-                    sx={{
-                        marginLeft: { md: 5 },
-                    }}
-                >
+                <Grid item ref={sectionRefs[2]} xs={12} md={6} marginTop={10}>
                     <Study />
                 </Grid>
-                <Grid md={1}></Grid>
-                <Grid
-                    item
-                    key={3}
-                    ref={sectionRefs[3]}
-                    xs={12}
-                    sm={8}
-                    md={5}
-                    marginTop={10}
-                    sx={{
-                        marginRight: { md: 5 },
-                    }}
-                >
+                <Grid item key={3} ref={sectionRefs[3]} xs={12} md={6} marginTop={10}>
                     <Work />
                 </Grid>
-                <Grid item key={4} ref={sectionRefs[4]} xs={12} sm={8}>
+                <Grid item key={4} ref={sectionRefs[4]} xs={12}>
                     <Projects />
                 </Grid>
             </Grid>

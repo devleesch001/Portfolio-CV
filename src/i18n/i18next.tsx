@@ -25,6 +25,7 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
         interpolation: {
             escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
         },
-    });
+    })
+    .then();
 
 export default i18n;

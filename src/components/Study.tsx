@@ -35,6 +35,10 @@ const Study = () => {
 
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const isOpposable = useMediaQuery(theme.breakpoints.up('md'));
+
+    console.log('isSmallScreen : ' + isSmallScreen);
+    console.log('isOpposable : ' + isOpposable);
 
     return (
         <>
@@ -49,6 +53,7 @@ const Study = () => {
                     [`& .${timelineItemClasses.root}:before`]: {
                         xs: { flex: 0, padding: 0 },
                         md: { flex: 'auto', padding: ['6px', '8px'] },
+                        xl: { flex: 0, padding: 0 },
                     },
                     padding: { xs: 0 },
                 }}

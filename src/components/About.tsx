@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Avatar, Box, Grid, Paper, Typography } from '@mui/material';
+import { Avatar, Grid, Paper, Typography } from '@mui/material';
 
 import '../styles/App.css';
 import meImage from '../static/images/avatar/alexis.jpg';
@@ -11,22 +11,16 @@ const About = () => {
     const { t } = useTranslation();
 
     return (
-        <Grid container spacing={2} alignItems="center" justifyContent="center">
-            <Grid item container xs={12} sm={2} direction="column" alignItems="center">
-                <Grid item paddingBottom={5}>
-                    <Typography textAlign={'center'} noWrap variant="h5">
+        <Grid container spacing={2} justifyContent="center">
+            <Grid item container xs={12} md={2} direction="column" alignItems="center">
+                <Grid item pb={5}>
+                    <Typography noWrap variant="h5">
                         {t('title.about')}
                     </Typography>
                 </Grid>
 
-                <Grid item>
-                    <Box justifyContent={'center'}>
-                        <Avatar
-                            alt={`${t('me.firstname')} ${t('me.name')}`}
-                            src={meImage}
-                            sx={{ width: 96, height: 96 }}
-                        />
-                    </Box>
+                <Grid item pb={2}>
+                    <Avatar alt={`${t('me.firstname')} ${t('me.name')}`} src={meImage} sx={{ width: 96, height: 96 }} />
                 </Grid>
             </Grid>
 

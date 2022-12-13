@@ -2,9 +2,7 @@ import React, { memo } from 'react';
 
 import '../styles/Mask.css';
 
-import { useTranslation } from 'react-i18next';
-
-import { Box, Card, CardMedia, Grid, Paper, Typography } from '@mui/material';
+import { Card, CardMedia, Grid } from '@mui/material';
 
 import ProjectImages from '../assets/Projects';
 
@@ -47,8 +45,6 @@ const itemData: ProjectCardInterface[] = [
 ];
 
 const Projects = () => {
-    const { t } = useTranslation();
-
     return (
         <Grid container spacing={2} justifyContent="center">
             {itemData.map((item, index) => (
@@ -68,22 +64,12 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const { cardInfo } = props;
 
-    const [shadow, setShadow] = React.useState('');
-    const onMouseOver = () =>
-        setShadow(` invert(10%) sepia(78%) saturate(3803%) hue-rotate(352deg) brightness(92%) contrast(115%)`);
-    const onMouseOut = () => setShadow('');
-
-    // console.log(shadow);
-
     return (
-        <Card onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+        <Card>
             <div className={'img-content'}>
-                <CardMedia component="img" image={cardInfo.img} />
+                <CardMedia component="img" image={cardInfo.img} style={{ filter: 'blur(3px)' }} />
                 <div className={'img-mask'} />
             </div>
-
-            {/*<Typography>{cardInfo.title}</Typography>*/}
-            {/*<img style={{ maxWidth: '100%', height: 'auto' }} src={`${cardInfo.img}`} />*/}
         </Card>
     );
 };

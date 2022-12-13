@@ -14,11 +14,7 @@ const cache = createCache({
     prepend: true,
 });
 
-export interface Provider {
-    drawerWidth: number;
-}
-
-export const appConst: Provider = { drawerWidth: 240 };
+export const appConst = { drawerWidth: 240 };
 
 const App = () => {
     return (
