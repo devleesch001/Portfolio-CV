@@ -1,5 +1,4 @@
 import { createTheme, Theme } from '@mui/material/styles';
-import '@mui/styles';
 
 let theme: Theme = createTheme({
     palette: {

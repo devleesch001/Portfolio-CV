@@ -4,17 +4,15 @@ import { isEqual, map } from 'lodash';
 import useScrollSpy from 'react-use-scrollspy';
 
 import { Box, Drawer, Tab, Tabs, Toolbar } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 
-import { Theme } from '@mui/material/styles';
-import clsx from 'clsx';
-
+import { Theme, useTheme } from '@mui/material/styles';
 import { Title } from './Main';
 import { appConst } from '../App';
 
 import '../styles/Tab.css';
 
-const useStyles = makeStyles((theme: Theme) => ({
+// todo refactor this
+const styles = (theme: Theme) => ({
     tabItem: {
         '&:hover': {
             backgroundColor: theme.palette.primary.contrastText,
@@ -25,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     tabItemActive: {
         background: theme.palette.secondary.contrastText,
     },
-}));
+});
 
 interface DrawerContentInterface {
     menu: Title[];
@@ -34,7 +32,7 @@ interface DrawerContentInterface {
 const DrawerContent: FC<DrawerContentInterface> = (props) => {
     const { menu, sectionRefs } = props;
 
-    const classes = useStyles();
+    const theme = useTheme();
 
     const activeIndex = useScrollSpy({ sectionElementRefs: sectionRefs, offsetPx: -80 });
 
@@ -55,7 +53,15 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
                     label={title}
                     icon={icon}
                     iconPosition={'start'}
-                    className={clsx(classes.tabItem, isEqual(index, activeIndex) && classes.tabItemActive)}
+                    sx={{
+                        ['&:hover']: {
+                            backgroundColor: theme.palette.primary.contrastText,
+                            color: theme.palette.primary.main,
+                        },
+                        color: theme.palette.primary.contrastText,
+                        background: isEqual(index, activeIndex) ? theme.palette.secondary.contrastText : 'none',
+                    }}
+                    // className={clsx(classes.tabItem, isEqual(index, activeIndex) && classes.tabItemActive)}
                 />
             ))}
         </Tabs>
