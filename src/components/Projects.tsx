@@ -65,11 +65,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const { cardInfo } = props;
 
     return (
-        <Card>
-            <div className={'img-content'}>
-                <CardMedia component="img" image={cardInfo.img} style={{ filter: 'blur(3px)' }} />
-                <div className={'img-mask'} />
-            </div>
+        <Card className={'img-content'}>
+            <CardMedia component="img" image={cardInfo.img} style={{ filter: 'blur(3px)' }} />
+            <div className={'img-mask'} />
         </Card>
     );
 };

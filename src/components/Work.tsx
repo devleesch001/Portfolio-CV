@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
@@ -84,7 +84,14 @@ const Work = () => {
     const { t } = useTranslation();
 
     const theme = useTheme();
+
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const isOpposable = useMediaQuery(theme.breakpoints.up('lg'));
+    const [isAlternate, setIsAlternate] = useState(false);
+
+    useEffect(() => {
+        setIsAlternate(!isOpposable && !isSmallScreen);
+    }, [isOpposable, isSmallScreen]);
 
     return (
         <>
@@ -95,24 +102,29 @@ const Work = () => {
             </Box>
 
             <Timeline
-                position={isSmallScreen ? 'right' : 'alternate'}
-                sx={{
-                    [`& .${timelineItemClasses.root}:before`]: {
-                        xs: { flex: 0, padding: 0 },
-                        md: { flex: 'auto', padding: ['6px', '8px'] },
-                    },
-                    [`& .${timelineItemClasses.root}:after`]: {
-                        xs: { flex: 0, padding: 0 },
-                        md: { flex: 'auto', padding: ['6px', '8px'] },
-                    },
-                    padding: { xs: 0 },
-                }}
+                position={isAlternate ? 'alternate' : 'right'}
+                sx={
+                    isAlternate
+                        ? {
+                              [`& .${timelineItemClasses.root}:before`]: {
+                                  xs: { flex: 0, padding: 0 },
+                                  md: { flex: 'auto', padding: ['6px', '8px'] },
+                              },
+                              padding: { xs: 0 },
+                          }
+                        : {
+                              [`& .${timelineItemClasses.root}:before`]: {
+                                  xs: { flex: 0, padding: 0 },
+                              },
+                              padding: { xs: 0 },
+                          }
+                }
                 onResize={undefined}
                 onResizeCapture={undefined}
             >
                 {workList.map((element, index) => (
                     <TimelineItem key={index}>
-                        {!isSmallScreen && (
+                        {isAlternate && (
                             <TimelineOppositeContent
                                 sx={{
                                     paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
@@ -133,14 +145,18 @@ const Work = () => {
                             <TimelineConnector />
                         </TimelineSeparator>
                         <TimelineContent
-                            sx={{
-                                paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
-                                paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
-                            }}
+                            sx={
+                                isAlternate
+                                    ? {
+                                          paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
+                                          paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
+                                      }
+                                    : {}
+                            }
                         >
                             <Paper elevation={3}>
                                 <Box p={2} textAlign={'justify'}>
-                                    {isSmallScreen && (
+                                    {!isAlternate && (
                                         <Typography variant={'subtitle2'}>
                                             {element.date} ({element.duration})
                                         </Typography>

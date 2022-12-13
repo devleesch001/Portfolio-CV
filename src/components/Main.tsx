@@ -78,10 +78,10 @@ const Main: FC = () => {
                 <Grid item key={1} ref={sectionRefs[1]} xs={12}>
                     <About />
                 </Grid>
-                <Grid item ref={sectionRefs[2]} xs={12} md={6} marginTop={10}>
+                <Grid item ref={sectionRefs[2]} xs={12} lg={6} marginTop={10}>
                     <Study />
                 </Grid>
-                <Grid item key={3} ref={sectionRefs[3]} xs={12} md={6} marginTop={10}>
+                <Grid item key={3} ref={sectionRefs[3]} xs={12} lg={6} marginTop={10}>
                     <Work />
                 </Grid>
                 <Grid item key={4} ref={sectionRefs[4]} xs={12}>

@@ -12,7 +12,7 @@ const About = () => {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            <Grid item container xs={12} md={2} direction="column" alignItems="center">
+            <Grid item container xs={12} md={3} direction="column" alignItems="center">
                 <Grid item pb={5}>
                     <Typography noWrap variant="h5">
                         {t('title.about')}
@@ -24,7 +24,7 @@ const About = () => {
                 </Grid>
             </Grid>
 
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} md={9}>
                 <Paper elevation={3}>
                     <Typography textAlign={'justify'} p={2}>
                         {t('about.content')}

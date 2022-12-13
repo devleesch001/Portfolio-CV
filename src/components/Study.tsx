@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material';
@@ -34,11 +34,14 @@ const Study = () => {
     const { t } = useTranslation();
 
     const theme = useTheme();
-    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
-    const isOpposable = useMediaQuery(theme.breakpoints.up('md'));
 
-    console.log('isSmallScreen : ' + isSmallScreen);
-    console.log('isOpposable : ' + isOpposable);
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+    const isOpposable = useMediaQuery(theme.breakpoints.up('lg'));
+    const [isAlternate, setIsAlternate] = useState(false);
+
+    useEffect(() => {
+        setIsAlternate(!isOpposable && !isSmallScreen);
+    }, [isOpposable, isSmallScreen]);
 
     return (
         <>
@@ -48,15 +51,23 @@ const Study = () => {
                 </Typography>
             </Box>
             <Timeline
-                position={isSmallScreen ? 'right' : 'alternate'}
-                sx={{
-                    [`& .${timelineItemClasses.root}:before`]: {
-                        xs: { flex: 0, padding: 0 },
-                        md: { flex: 'auto', padding: ['6px', '8px'] },
-                        xl: { flex: 0, padding: 0 },
-                    },
-                    padding: { xs: 0 },
-                }}
+                position={isAlternate ? 'alternate' : 'right'}
+                sx={
+                    isAlternate
+                        ? {
+                              [`& .${timelineItemClasses.root}:before`]: {
+                                  xs: { flex: 0, padding: 0 },
+                                  md: { flex: 'auto', padding: ['6px', '8px'] },
+                              },
+                              padding: { xs: 0 },
+                          }
+                        : {
+                              [`& .${timelineItemClasses.root}:before`]: {
+                                  xs: { flex: 0, padding: 0 },
+                              },
+                              padding: { xs: 0 },
+                          }
+                }
                 onResize={undefined}
                 onResizeCapture={undefined}
             >
@@ -70,10 +81,14 @@ const Study = () => {
                         </TimelineSeparator>
 
                         <TimelineContent
-                            sx={{
-                                paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
-                                paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
-                            }}
+                            sx={
+                                isAlternate
+                                    ? {
+                                          paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
+                                          paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
+                                      }
+                                    : {}
+                            }
                         >
                             <Paper elevation={3}>
                                 <Box p={2} textAlign={'justify'}>
