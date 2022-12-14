@@ -2,11 +2,12 @@ import React, { memo } from 'react';
 
 import '../styles/Mask.css';
 
-import { Card, CardMedia, Grid } from '@mui/material';
+import { Box, Card, CardMedia, Grid, Typography } from '@mui/material';
 
 import ProjectImages from '../assets/Projects';
 
 import '../styles/App.css';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectCardInterface {
     img: string;
@@ -45,14 +46,23 @@ const itemData: ProjectCardInterface[] = [
 ];
 
 const Projects = () => {
+    const { t } = useTranslation();
+
     return (
-        <Grid container spacing={2} justifyContent="center">
-            {itemData.map((item, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                    <ProjectCard cardInfo={item} />
-                </Grid>
-            ))}
-        </Grid>
+        <>
+            <Box>
+                <Typography textAlign={'center'} variant={'h2'}>
+                    {t('title.project')}
+                </Typography>
+            </Box>
+            <Grid container spacing={5} justifyContent="center" marginTop={2}>
+                {itemData.map((item, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <ProjectCard cardInfo={item} />
+                    </Grid>
+                ))}
+            </Grid>
+        </>
     );
 };
 

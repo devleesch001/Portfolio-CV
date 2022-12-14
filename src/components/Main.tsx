@@ -67,8 +67,8 @@ const Main: FC = () => {
                 container
                 justifyContent="center"
                 sx={{
-                    paddingLeft: { xs: 2, lg: `${appConst.drawerWidth + 40}px` },
-                    paddingRight: { xs: 2, lg: '40px' },
+                    paddingLeft: { xs: 2, lg: `${appConst.drawerWidth + 10}px` },
+                    paddingRight: { xs: '10px' },
                 }}
                 spacing={2}
             >
@@ -78,13 +78,36 @@ const Main: FC = () => {
                 <Grid item key={1} ref={sectionRefs[1]} xs={12}>
                     <About />
                 </Grid>
-                <Grid item ref={sectionRefs[2]} xs={12} lg={6} marginTop={10}>
+                <Grid
+                    item
+                    key={2}
+                    ref={sectionRefs[2]}
+                    xs={12}
+                    lg={6}
+                    marginTop={10}
+                    sx={{ maxWidth: { lg: '600px' } }}
+                >
                     <Study />
                 </Grid>
-                <Grid item key={3} ref={sectionRefs[3]} xs={12} lg={6} marginTop={10}>
+                <Grid
+                    item
+                    key={3}
+                    ref={sectionRefs[3]}
+                    xs={12}
+                    lg={6}
+                    marginTop={10}
+                    sx={{ maxWidth: { lg: '600px' } }}
+                >
                     <Work />
                 </Grid>
-                <Grid item key={4} ref={sectionRefs[4]} xs={12}>
+                <Grid
+                    item
+                    key={4}
+                    ref={sectionRefs[4]}
+                    xs={12}
+                    marginTop={10}
+                    sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
+                >
                     <Projects />
                 </Grid>
             </Grid>

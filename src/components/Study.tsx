@@ -84,7 +84,7 @@ const Study = () => {
                                           paddingRight: { xs: index % 2 && !isSmallScreen ? 'auto' : 0 },
                                           paddingLeft: { xs: index % 2 && !isSmallScreen ? 0 : 'auto' },
                                       }
-                                    : {}
+                                    : { paddingRight: 0 }
                             }
                         >
                             <Paper elevation={3}>
