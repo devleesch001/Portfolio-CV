@@ -1,29 +1,12 @@
 import React, { FC, memo } from 'react';
 
-import { isEqual, map } from 'lodash';
+import { map } from 'lodash';
 import useScrollSpy from 'react-use-scrollspy';
 
 import { Box, Drawer, Tab, Tabs, Toolbar } from '@mui/material';
 
-import { Theme, useTheme } from '@mui/material/styles';
 import { Title } from './Main';
 import { appConst } from '../App';
-
-import '../styles/Tab.css';
-
-// todo refactor this
-const styles = (theme: Theme) => ({
-    tabItem: {
-        '&:hover': {
-            backgroundColor: theme.palette.primary.contrastText,
-            color: theme.palette.primary.main,
-        },
-        color: theme.palette.primary.contrastText,
-    },
-    tabItemActive: {
-        background: theme.palette.secondary.contrastText,
-    },
-});
 
 interface DrawerContentInterface {
     menu: Title[];
@@ -32,9 +15,7 @@ interface DrawerContentInterface {
 const DrawerContent: FC<DrawerContentInterface> = (props) => {
     const { menu, sectionRefs } = props;
 
-    const theme = useTheme();
-
-    const activeIndex = useScrollSpy({ sectionElementRefs: sectionRefs, offsetPx: -80 });
+    const activeIndex = useScrollSpy({ activeSectionDefault: 0, sectionElementRefs: sectionRefs, offsetPx: -80 });
 
     return (
         <Tabs
@@ -53,15 +34,6 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
                     label={title}
                     icon={icon}
                     iconPosition={'start'}
-                    sx={{
-                        ['&:hover']: {
-                            backgroundColor: theme.palette.primary.contrastText,
-                            color: theme.palette.primary.main,
-                        },
-                        color: theme.palette.primary.contrastText,
-                        background: isEqual(index, activeIndex) ? theme.palette.secondary.contrastText : 'none',
-                    }}
-                    // className={clsx(classes.tabItem, isEqual(index, activeIndex) && classes.tabItemActive)}
                 />
             ))}
         </Tabs>

@@ -27,6 +27,25 @@ theme = {
                 },
             },
         },
+        MuiTabs: {
+            styleOverrides: {
+                indicator: {
+                    backgroundColor: theme.palette.secondary.dark,
+                },
+            },
+        },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    ':hover': { background: theme.palette.secondary.contrastText, color: theme.palette.secondary.dark },
+                    color: theme.palette.primary.contrastText,
+                    '&.Mui-selected': {
+                        color: theme.palette.secondary.dark,
+                        backgroundColor: theme.palette.primary.contrastText,
+                    },
+                },
+            },
+        },
     },
 };
 

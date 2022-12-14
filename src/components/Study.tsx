@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import { Box, Paper, Typography, useMediaQuery } from '@mui/material';
@@ -37,11 +37,8 @@ const Study = () => {
 
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
     const isOpposable = useMediaQuery(theme.breakpoints.up('lg'));
-    const [isAlternate, setIsAlternate] = useState(false);
 
-    useEffect(() => {
-        setIsAlternate(!isOpposable && !isSmallScreen);
-    }, [isOpposable, isSmallScreen]);
+    const isAlternate = !isOpposable && !isSmallScreen;
 
     return (
         <>
