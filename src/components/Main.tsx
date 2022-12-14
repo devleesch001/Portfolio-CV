@@ -12,13 +12,14 @@ import Work from './Work';
 
 import { appConst } from '../App';
 
-import { Box, Grid } from '@mui/material';
+import { Box, Divider, Grid } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
 import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import WorkIcon from '@mui/icons-material/Work';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import Contacts from './Contacts';
 
 export interface Title {
     hash: string;
@@ -43,6 +44,7 @@ const Main: FC = () => {
     };
 
     const sectionRefs: React.MutableRefObject<HTMLDivElement | null>[] = [
+        useRef<HTMLDivElement | null>(null),
         useRef<HTMLDivElement | null>(null),
         useRef<HTMLDivElement | null>(null),
         useRef<HTMLDivElement | null>(null),
@@ -75,40 +77,38 @@ const Main: FC = () => {
                 <Grid item key={0} ref={sectionRefs[0]} xs={12}>
                     <Home />
                 </Grid>
-                <Grid item key={1} ref={sectionRefs[1]} xs={12} sx={{ maxWidth: { lg: '1200px' } }}>
+                <Grid item key={1} ref={sectionRefs[1]} xs={12} marginY={5} sx={{ maxWidth: { lg: '1200px' } }}>
                     <About />
                 </Grid>
-                <Grid
-                    item
-                    key={2}
-                    ref={sectionRefs[2]}
-                    xs={12}
-                    lg={6}
-                    marginTop={10}
-                    sx={{ maxWidth: { lg: '600px' } }}
-                >
+                <Divider sx={{ width: '80%' }} />
+                <Grid item key={2} ref={sectionRefs[2]} xs={12} lg={6} marginY={5} sx={{ maxWidth: { lg: '600px' } }}>
                     <Study />
                 </Grid>
-                <Grid
-                    item
-                    key={3}
-                    ref={sectionRefs[3]}
-                    xs={12}
-                    lg={6}
-                    marginTop={10}
-                    sx={{ maxWidth: { lg: '600px' } }}
-                >
+                <Divider sx={{ width: { xs: '80%', lg: 0 } }} />
+                <Grid item key={3} ref={sectionRefs[3]} xs={12} lg={6} marginY={5} sx={{ maxWidth: { lg: '600px' } }}>
                     <Work />
                 </Grid>
+                <Divider sx={{ width: '80%' }} />
                 <Grid
                     item
                     key={4}
                     ref={sectionRefs[4]}
                     xs={12}
-                    marginTop={10}
+                    marginY={5}
                     sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
                 >
                     <Projects />
+                </Grid>
+                <Divider sx={{ width: '80%' }} />
+                <Grid
+                    item
+                    key={5}
+                    ref={sectionRefs[5]}
+                    xs={12}
+                    marginY={5}
+                    sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
+                >
+                    <Contacts />
                 </Grid>
             </Grid>
         </>
