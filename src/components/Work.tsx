@@ -50,8 +50,8 @@ const workList: workInterface[] = [
         duration: '8 semaines',
         company: 'Grand Narbonne',
         subject:
-            'Maintenance des systèmes informatiques du Grand Narbonne' +
-            'Project « Pentesting du portail captif » afin de tester la sécurité.' +
+            'Maintenance des systèmes informatiques du Grand Narbonne ' +
+            'Project « Pentesting du portail captif » afin de tester la sécurité. ' +
             '(Utilisation de kali linux).',
         city: 'Narbonne',
     },

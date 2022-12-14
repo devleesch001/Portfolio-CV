@@ -75,7 +75,7 @@ const Main: FC = () => {
                 <Grid item key={0} ref={sectionRefs[0]} xs={12}>
                     <Home />
                 </Grid>
-                <Grid item key={1} ref={sectionRefs[1]} xs={12}>
+                <Grid item key={1} ref={sectionRefs[1]} xs={12} sx={{ maxWidth: { lg: '1200px' } }}>
                     <About />
                 </Grid>
                 <Grid
