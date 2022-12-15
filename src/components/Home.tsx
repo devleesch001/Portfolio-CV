@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { Alert, Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 import meImage from '../assets/alexis.jpg';
@@ -13,7 +13,6 @@ const Home = () => {
     return (
         <Box sx={{ height: '50vh' }}>
             <Box sx={{ marginTop: '50vh', transform: 'translateY(-100%)' }}>
-                <Alert severity="warning">Work in Progress!</Alert>
                 <Avatar
                     alt={`${t('me.firstname')} ${t('me.name')}`}
                     src={meImage}
