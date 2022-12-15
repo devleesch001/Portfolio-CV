@@ -147,6 +147,7 @@ const Main: FC = () => {
                     >
                         <Contacts />
                     </Grid>
+                    <Grid xs={12} p={'50hv'}></Grid>
                 </Grid>
             </Box>
         </Paper>

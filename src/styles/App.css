@@ -11,6 +11,10 @@
     --folio-secondary-text-color: #ffffff;
 }
 
+img {
+    pointer-events: none;
+}
+
 .folio-app-bar {
     width: 300px;
     height: 100%;
