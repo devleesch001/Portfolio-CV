@@ -3,12 +3,14 @@ import React, { memo } from 'react';
 import '../styles/Mask.css';
 import '../styles/App.css';
 
-import { Avatar, Box, Card, CardMedia, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardMedia, Grid, IconButton, Typography } from '@mui/material';
 
-import ZoomInIcon from '@mui/icons-material/ZoomIn';
+import PublicIcon from '@mui/icons-material/Public';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import ProjectImages from '../assets/Projects';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@mui/material/styles';
 
 interface ProjectCardInterface {
     title: string;
@@ -33,7 +35,6 @@ const itemData: ProjectCardInterface[] = [
         label: 'Iot',
         subtitle: 'Smart Trafic Light IOT with cloud system',
         srcUrlProject: 'https://github.com/devleesch001/smart-trafic-light',
-        url: 'https://github.com/devleesch001/smart-trafic-light',
     },
     {
         img: ProjectImages.portFolio,
@@ -41,6 +42,7 @@ const itemData: ProjectCardInterface[] = [
         label: 'Web',
         subtitle: 'This Portfolio React',
         srcUrlProject: 'https://github.com/devleesch001/Portfolio-CV',
+        url: 'https://devleeschauwer.fr',
     },
     {
         img: ProjectImages.weatherCard,
@@ -48,6 +50,7 @@ const itemData: ProjectCardInterface[] = [
         label: 'Web',
         subtitle: 'Weather Application',
         srcUrlProject: 'https://github.com/devleesch001/WeatherCard',
+        url: 'https://weather.dev-analysis.com/',
     },
 ];
 
@@ -80,15 +83,28 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const { cardInfo } = props;
 
+    const theme = useTheme();
+
     return (
         <Card className={'img-content'}>
             <CardMedia component="img" image={cardInfo.img} style={{ filter: 'blur(2.5px)' }} />
             <div className={'img-mask'} />
             <div className={'img-detail'} style={{ left: '50' }}>
                 <span className={'term'}>{cardInfo.label}</span>
-                <Avatar className={'action'}>
-                    <ZoomInIcon />
-                </Avatar>
+                <div className={'action'}>
+                    {cardInfo.url && (
+                        <IconButton className={'button'} href={cardInfo.url} target="_blank">
+                            <PublicIcon />
+                        </IconButton>
+                    )}
+                </div>
+                <div className={'info'}>
+                    {cardInfo.srcUrlProject && (
+                        <IconButton className={'button'} href={cardInfo.srcUrlProject} target="_blank">
+                            <GitHubIcon />
+                        </IconButton>
+                    )}
+                </div>
                 <div className={'title'}>
                     <Typography variant={'h5'}>{cardInfo.title}</Typography>
                     <Typography>{cardInfo.subtitle}</Typography>
