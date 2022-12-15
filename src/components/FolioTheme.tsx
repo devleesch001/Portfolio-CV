@@ -1,52 +1,94 @@
 import { createTheme, Theme } from '@mui/material/styles';
+import React from 'react';
 
-let theme: Theme = createTheme({
+const redColorSet = {
+    light: '#f05545',
+    main: '#b71c1c',
+    dark: '#7f0000',
+    contrastText: '#ffffff',
+};
+
+const blackColorSet = {
+    light: '#484848',
+    main: '#212121',
+    dark: '#000000',
+    contrastText: '#ffffff',
+};
+
+export const lightTheme: Theme = createTheme({
     palette: {
-        primary: {
-            light: '#f05545',
-            main: '#b71c1c',
-            dark: '#7f0000',
-            contrastText: '#ffffff',
-        },
-        secondary: {
-            light: '#484848',
-            main: '#212121',
-            dark: '#000000',
-            contrastText: '#ffffff',
-        },
+        mode: 'light',
+        primary: redColorSet,
+        secondary: blackColorSet,
     },
-});
-
-theme = {
-    ...theme,
     components: {
         MuiDrawer: {
             styleOverrides: {
                 paper: {
-                    background: theme.palette.primary.main,
+                    background: redColorSet.main,
                 },
             },
         },
         MuiTabs: {
             styleOverrides: {
                 indicator: {
-                    backgroundColor: theme.palette.secondary.dark,
+                    backgroundColor: blackColorSet.dark,
                 },
             },
         },
         MuiTab: {
             styleOverrides: {
                 root: {
-                    ':hover': { background: theme.palette.secondary.contrastText, color: theme.palette.secondary.dark },
-                    color: theme.palette.primary.contrastText,
+                    ':hover': {
+                        color: blackColorSet.dark,
+                        background: redColorSet.contrastText,
+                    },
+                    color: redColorSet.contrastText,
                     '&.Mui-selected': {
-                        color: theme.palette.secondary.dark,
-                        backgroundColor: theme.palette.primary.contrastText,
+                        color: blackColorSet.dark,
+                        backgroundColor: redColorSet.contrastText,
                     },
                 },
             },
         },
     },
-};
+});
 
-export default theme;
+export const darkTheme: Theme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary: blackColorSet,
+        secondary: redColorSet,
+    },
+    components: {
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    background: blackColorSet.main,
+                },
+            },
+        },
+        MuiTabs: {
+            styleOverrides: {
+                indicator: {
+                    backgroundColor: redColorSet.dark,
+                },
+            },
+        },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    ':hover': {
+                        color: redColorSet.dark,
+                        background: blackColorSet.contrastText,
+                    },
+                    color: blackColorSet.contrastText,
+                    '&.Mui-selected': {
+                        color: redColorSet.dark,
+                        backgroundColor: blackColorSet.contrastText,
+                    },
+                },
+            },
+        },
+    },
+});

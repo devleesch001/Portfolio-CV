@@ -14,7 +14,7 @@ import Contacts from './Contacts';
 
 import Work from './Work';
 
-import { Box, Divider, Fab, Grid, useMediaQuery } from '@mui/material';
+import { Box, Divider, Fab, Grid, Paper, useMediaQuery } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
@@ -59,76 +59,94 @@ const Main: FC = () => {
     ];
 
     return (
-        <Box>
-            {isSmallScreen && (
-                <Fab
-                    aria-label={'fab-nav-up'}
-                    color="primary"
-                    onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
-                    sx={{ position: 'fixed', bottom: 16, right: 16 }}
-                >
-                    <KeyboardArrowUpIcon />
-                </Fab>
-            )}
+        <Paper>
+            <Box>
+                {isSmallScreen && (
+                    <Fab
+                        aria-label={'fab-nav-up'}
+                        color="primary"
+                        onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
+                        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                    >
+                        <KeyboardArrowUpIcon />
+                    </Fab>
+                )}
 
-            <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
-                <NavBar handleDrawerToggle={handleDrawerToggle} />
+                <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
+                    <NavBar handleDrawerToggle={handleDrawerToggle} />
+                </Box>
+
+                <TabPanel
+                    menu={menus}
+                    mobileOpen={mobileOpen}
+                    sectionRefs={sectionRefs}
+                    handleDrawerToggle={handleDrawerToggle}
+                />
+
+                <Grid
+                    container
+                    justifyContent="center"
+                    sx={{
+                        paddingLeft: { xs: 2, lg: `${appConst.drawerWidth + 10}px` },
+                        paddingRight: { xs: '10px' },
+                    }}
+                    spacing={2}
+                >
+                    <Grid item key={0} ref={sectionRefs[0]} xs={12}>
+                        <Home />
+                    </Grid>
+                    <Grid item key={1} ref={sectionRefs[1]} xs={12} marginY={5} sx={{ maxWidth: { lg: '1200px' } }}>
+                        <About />
+                    </Grid>
+                    <Divider sx={{ width: '80%' }} />
+                    <Grid
+                        item
+                        key={2}
+                        ref={sectionRefs[2]}
+                        xs={12}
+                        lg={6}
+                        marginY={5}
+                        sx={{ maxWidth: { lg: '600px' } }}
+                    >
+                        <Study />
+                    </Grid>
+                    <Divider sx={{ width: { xs: '80%', lg: 0 } }} />
+                    <Grid
+                        item
+                        key={3}
+                        ref={sectionRefs[3]}
+                        xs={12}
+                        lg={6}
+                        marginY={5}
+                        sx={{ maxWidth: { lg: '600px' } }}
+                    >
+                        <Work />
+                    </Grid>
+                    <Divider sx={{ width: '80%' }} />
+                    <Grid
+                        item
+                        key={4}
+                        ref={sectionRefs[4]}
+                        xs={12}
+                        marginY={5}
+                        sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
+                    >
+                        <Projects />
+                    </Grid>
+                    <Divider sx={{ width: '80%' }} />
+                    <Grid
+                        item
+                        key={5}
+                        ref={sectionRefs[5]}
+                        xs={12}
+                        marginY={5}
+                        sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
+                    >
+                        <Contacts />
+                    </Grid>
+                </Grid>
             </Box>
-
-            <TabPanel
-                menu={menus}
-                mobileOpen={mobileOpen}
-                sectionRefs={sectionRefs}
-                handleDrawerToggle={handleDrawerToggle}
-            />
-
-            <Grid
-                container
-                justifyContent="center"
-                sx={{
-                    paddingLeft: { xs: 2, lg: `${appConst.drawerWidth + 10}px` },
-                    paddingRight: { xs: '10px' },
-                }}
-                spacing={2}
-            >
-                <Grid item key={0} ref={sectionRefs[0]} xs={12}>
-                    <Home />
-                </Grid>
-                <Grid item key={1} ref={sectionRefs[1]} xs={12} marginY={5} sx={{ maxWidth: { lg: '1200px' } }}>
-                    <About />
-                </Grid>
-                <Divider sx={{ width: '80%' }} />
-                <Grid item key={2} ref={sectionRefs[2]} xs={12} lg={6} marginY={5} sx={{ maxWidth: { lg: '600px' } }}>
-                    <Study />
-                </Grid>
-                <Divider sx={{ width: { xs: '80%', lg: 0 } }} />
-                <Grid item key={3} ref={sectionRefs[3]} xs={12} lg={6} marginY={5} sx={{ maxWidth: { lg: '600px' } }}>
-                    <Work />
-                </Grid>
-                <Divider sx={{ width: '80%' }} />
-                <Grid
-                    item
-                    key={4}
-                    ref={sectionRefs[4]}
-                    xs={12}
-                    marginY={5}
-                    sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
-                >
-                    <Projects />
-                </Grid>
-                <Divider sx={{ width: '80%' }} />
-                <Grid
-                    item
-                    key={5}
-                    ref={sectionRefs[5]}
-                    xs={12}
-                    marginY={5}
-                    sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
-                >
-                    <Contacts />
-                </Grid>
-            </Grid>
-        </Box>
+        </Paper>
     );
 };
 

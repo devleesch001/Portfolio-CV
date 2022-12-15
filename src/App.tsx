@@ -2,8 +2,8 @@ import React from 'react';
 
 import Main from './components/Main';
 
-import { ThemeProvider } from '@mui/material';
-import theme from './components/FolioTheme';
+import { ThemeProvider, useMediaQuery } from '@mui/material';
+import { lightTheme, darkTheme } from './components/FolioTheme';
 import './styles/App.css';
 
 import { CacheProvider } from '@emotion/react';
@@ -17,6 +17,9 @@ const cache = createCache({
 export const appConst = { drawerWidth: 240 };
 
 const App = () => {
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const theme = React.useMemo(() => (prefersDarkMode ? darkTheme : lightTheme), [prefersDarkMode]);
+
     return (
         <CacheProvider value={cache}>
             <ThemeProvider theme={theme}>
