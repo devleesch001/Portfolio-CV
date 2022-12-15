@@ -3,7 +3,7 @@ import React, { FC, memo } from 'react';
 import { map } from 'lodash';
 import useScrollSpy from 'react-use-scrollspy';
 
-import { Box, Drawer, Tab, Tabs, Toolbar } from '@mui/material';
+import { Box, Drawer, Tab, Tabs } from '@mui/material';
 
 import { Title } from './Main';
 import { appConst } from '../App';
@@ -30,9 +30,12 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
             orientation="vertical"
             indicatorColor="secondary"
             textColor="secondary"
-            aria-label="nav tabs"
+            aria-label="nav-tabs"
             className={'folio-tabs'}
             selectionFollowsFocus
+            sx={{
+                marginTop: 'calc((100vh - 432px) / 2)',
+            }}
         >
             {map(menu, ({ title, icon }, index) => (
                 <Tab
@@ -100,9 +103,6 @@ const NavPanel: FC<NavProps> = (props) => {
                 >
                     <DrawerContent menu={menu} sectionRefs={sectionRefs} />
                 </Drawer>
-            </Box>
-            <Box component="main" sx={{ flexGrow: 1, p: 3, width: { lg: `calc(100% - ${appConst.drawerWidth}px)` } }}>
-                <Toolbar />
             </Box>
         </Box>
     );

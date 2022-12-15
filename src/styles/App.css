@@ -25,11 +25,6 @@ img {
     padding: 50px 40px 40px;
 }
 
-.folio-tabs {
-    transform: translateY(-50%);
-    margin-top: 50vh;
-}
-
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
