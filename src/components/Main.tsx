@@ -24,6 +24,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import { Theme } from '@mui/material/styles';
+import useScrollSpy from 'react-use-scrollspy';
 
 export interface Title {
     hash: string;
@@ -58,10 +59,12 @@ const Main: FC = () => {
         useRef<HTMLDivElement | null>(null),
     ];
 
+    const activeIndex = useScrollSpy({ activeSectionDefault: 0, sectionElementRefs: sectionRefs, offsetPx: -80 });
+
     return (
         <Paper>
             <Box>
-                {isSmallScreen && (
+                {isSmallScreen && activeIndex !== 0 && (
                     <Fab
                         aria-label={'fab-nav-up'}
                         color="primary"

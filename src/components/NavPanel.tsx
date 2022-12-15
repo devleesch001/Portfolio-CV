@@ -67,7 +67,7 @@ const NavPanel: FC<NavProps> = (props) => {
             <Box
                 component="nav"
                 sx={{ width: { lg: appConst.drawerWidth }, flexShrink: { lg: 0 } }}
-                aria-label="navbar box"
+                aria-label="navbar-box"
             >
                 <Drawer
                     container={container}
