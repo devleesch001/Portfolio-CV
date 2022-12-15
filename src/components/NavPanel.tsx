@@ -11,9 +11,10 @@ import { appConst } from '../App';
 interface DrawerContentInterface {
     menu: Title[];
     sectionRefs: React.MutableRefObject<HTMLDivElement | null>[];
+    handleDrawerToggle(): void;
 }
 const DrawerContent: FC<DrawerContentInterface> = (props) => {
-    const { menu, sectionRefs } = props;
+    const { menu, sectionRefs, handleDrawerToggle } = props;
 
     const activeIndex = useScrollSpy({ activeSectionDefault: 0, sectionElementRefs: sectionRefs, offsetPx: -80 });
 
@@ -30,7 +31,12 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
             {map(menu, ({ title, icon }, index) => (
                 <Tab
                     key={index}
-                    onClick={() => sectionRefs[index]?.current?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => {
+                        sectionRefs[index]?.current?.scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(() => {
+                            handleDrawerToggle();
+                        }, 1000);
+                    }}
                     label={title}
                     icon={icon}
                     iconPosition={'start'}
@@ -75,7 +81,7 @@ const NavPanel: FC<NavProps> = (props) => {
                         },
                     }}
                 >
-                    <DrawerContent menu={menu} sectionRefs={sectionRefs} />
+                    <DrawerContent menu={menu} sectionRefs={sectionRefs} handleDrawerToggle={handleDrawerToggle} />
                 </Drawer>
                 <Drawer
                     variant="permanent"
@@ -88,7 +94,7 @@ const NavPanel: FC<NavProps> = (props) => {
                     }}
                     open
                 >
-                    <DrawerContent menu={menu} sectionRefs={sectionRefs} />
+                    <DrawerContent menu={menu} sectionRefs={sectionRefs} handleDrawerToggle={handleDrawerToggle} />
                 </Drawer>
             </Box>
             <Box component="main" sx={{ flexGrow: 1, p: 3, width: { lg: `calc(100% - ${appConst.drawerWidth}px)` } }}>

@@ -9,6 +9,7 @@ import '../styles/App.css';
 import { useTranslation } from 'react-i18next';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 

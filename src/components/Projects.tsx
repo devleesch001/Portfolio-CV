@@ -1,16 +1,16 @@
 import React, { memo } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import '../styles/Mask.css';
 import '../styles/App.css';
 
-import { Avatar, Box, Card, CardMedia, Grid, IconButton, Typography } from '@mui/material';
+import ProjectImages from '../assets/Projects';
+
+import { Box, Card, CardMedia, Grid, IconButton, Typography } from '@mui/material';
 
 import PublicIcon from '@mui/icons-material/Public';
 import GitHubIcon from '@mui/icons-material/GitHub';
-
-import ProjectImages from '../assets/Projects';
-import { useTranslation } from 'react-i18next';
-import { useTheme } from '@mui/material/styles';
 
 interface ProjectCardInterface {
     title: string;
@@ -83,11 +83,14 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const { cardInfo } = props;
 
-    const theme = useTheme();
-
     return (
         <Card className={'img-content'}>
-            <CardMedia component="img" image={cardInfo.img} style={{ filter: 'blur(2.5px)' }} />
+            <CardMedia
+                component="img"
+                image={cardInfo.img}
+                style={{ filter: 'blur(2.5px)' }}
+                alt={'project image unavailable'}
+            />
             <div className={'img-mask'} />
             <div className={'img-detail'} style={{ left: '50' }}>
                 <span className={'term'}>{cardInfo.label}</span>

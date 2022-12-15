@@ -7,7 +7,12 @@ import { appConst } from '../App';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
-const NavBar: FC<{ handleDrawerToggle(): void }> = ({ handleDrawerToggle }) => {
+interface NavBarProps {
+    handleDrawerToggle(): void;
+}
+const NavBar: FC<NavBarProps> = (props) => {
+    const { handleDrawerToggle } = props;
+
     const trigger = useScrollTrigger();
 
     const { t } = useTranslation();

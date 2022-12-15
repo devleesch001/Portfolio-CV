@@ -29,9 +29,9 @@
         "ecmaVersion": 6,
         "sourceType": "module"
     },
+    "ignorePatterns": ["**/*.css"],
     "rules": {
         "prettier/prettier": ["warn",  {"endOfLine": "lf"}],
-
         "max-len": [2, 120, 4, {"ignoreUrls": true}],
         "semi": ["error", "always"]
     }

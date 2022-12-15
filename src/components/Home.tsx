@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import { Alert, Avatar, Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import meImage from '../static/images/avatar/alexis.jpg';
+import meImage from '../assets/alexis.jpg';
 
 import '../styles/App.css';
 

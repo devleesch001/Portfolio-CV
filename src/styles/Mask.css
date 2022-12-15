@@ -6,6 +6,11 @@
 .img-content * {
     transition: all 1s cubic-bezier(.075, .82, .165, 1);
     user-select: none;
+    pointer-events: none;
+}
+
+.img-content:hover * {
+    pointer-events: all;
 }
 
 /* Child Text Container */
@@ -90,26 +95,23 @@
     transform: translateY(0);
 }
 
-.img-content:hover {
-    /*cursor: pointer;*/
-}
-
-.img-content .button {
+/* css on visible element */
+.img-content:hover .button {
     background: var(--folio-secondary-color);
     transition: none;
 }
 
-.img-content .button:hover {
+.img-content:hover .button:hover {
     background: var(--folio-secondary-text-color);
     transition: none;
 }
 
-.img-content .button svg {
+.img-content:hover .button svg {
     color: var(--folio-secondary-text-color);
     transition: none;
 }
 
-.img-content .button:hover svg {
+.img-content:hover .button:hover svg {
     color: var(--folio-secondary-color);
     transition: none;
 }
