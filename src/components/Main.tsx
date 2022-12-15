@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useRef } from 'react';
 
+import { appConst } from '../App';
 import { t } from 'i18next';
 
 import TabPanel from './NavPanel';
@@ -8,18 +9,21 @@ import Home from './Home';
 import About from './About';
 import Study from './Study';
 import Projects from './Projects';
+
+import Contacts from './Contacts';
+
 import Work from './Work';
 
-import { appConst } from '../App';
-
-import { Box, Divider, Grid } from '@mui/material';
+import { Box, Divider, Fab, Grid, useMediaQuery } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
 import PlagiarismIcon from '@mui/icons-material/Plagiarism';
 import WorkIcon from '@mui/icons-material/Work';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import Contacts from './Contacts';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+import { Theme } from '@mui/material/styles';
 
 export interface Title {
     hash: string;
@@ -37,6 +41,8 @@ const Main: FC = () => {
         { hash: 'contact-panel', title: t('title.contact'), icon: <ContactsIcon /> },
     ];
 
+    const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
+
     /* mobile detect */
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const handleDrawerToggle = () => {
@@ -53,7 +59,18 @@ const Main: FC = () => {
     ];
 
     return (
-        <>
+        <Box>
+            {isSmallScreen && (
+                <Fab
+                    aria-label={'fab-nav-up'}
+                    color="primary"
+                    onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
+                    sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                >
+                    <KeyboardArrowUpIcon />
+                </Fab>
+            )}
+
             <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
                 <NavBar handleDrawerToggle={handleDrawerToggle} />
             </Box>
@@ -111,7 +128,7 @@ const Main: FC = () => {
                     <Contacts />
                 </Grid>
             </Grid>
-        </>
+        </Box>
     );
 };
 
