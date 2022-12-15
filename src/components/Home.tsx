@@ -11,8 +11,8 @@ const Home = () => {
     const { t } = useTranslation();
 
     return (
-        <Box sx={{ height: '50vh' }}>
-            <Box sx={{ marginTop: '50vh', transform: 'translateY(-100%)' }}>
+        <Box sx={{ height: '100vh' }}>
+            <Box sx={{ marginY: '25vh' }}>
                 <Avatar
                     alt={`${t('me.firstname')} ${t('me.name')}`}
                     src={meImage}

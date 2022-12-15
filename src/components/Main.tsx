@@ -138,6 +138,7 @@ const Main: FC = () => {
                     </Grid>
                     <Divider sx={{ width: '80%' }} />
                     <Grid
+                        height={'95vh'}
                         item
                         key={5}
                         ref={sectionRefs[5]}
@@ -147,7 +148,6 @@ const Main: FC = () => {
                     >
                         <Contacts />
                     </Grid>
-                    <Grid xs={12} p={'50hv'}></Grid>
                 </Grid>
             </Box>
         </Paper>
