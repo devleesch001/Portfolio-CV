@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Avatar, Grid, Paper, Typography } from '@mui/material';
 
 import '../styles/App.css';
-import meImage from '../assets/alexis.jpg';
+import meImage from '../assets/alexis.webp';
 
 const About = () => {
     const { t } = useTranslation();

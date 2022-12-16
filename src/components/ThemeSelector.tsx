@@ -23,13 +23,13 @@ const ThemeSelector: React.FC = () => {
             onChange={handleChange}
             aria-label="Platform"
         >
-            <ToggleButton value="light">
+            <ToggleButton aria-label="light-theme-button" value="light">
                 <Brightness7Icon />
             </ToggleButton>
-            <ToggleButton value="dark">
+            <ToggleButton aria-label="dark-theme-button" value="dark">
                 <Brightness4Icon color="inherit" />
             </ToggleButton>
-            <ToggleButton value="auto">
+            <ToggleButton aria-label="auto-theme-button" value="auto">
                 <BrightnessAutoIcon />
             </ToggleButton>
         </ToggleButtonGroup>

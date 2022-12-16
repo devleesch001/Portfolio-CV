@@ -90,20 +90,31 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                 image={cardInfo.img}
                 style={{ filter: 'blur(2.5px)' }}
                 alt={'project image unavailable'}
+                height="100%"
             />
             <div className={'img-mask'} />
             <div className={'img-detail'} style={{ left: '50' }}>
                 <span className={'term'}>{cardInfo.label}</span>
                 <div className={'action'}>
                     {cardInfo.url && (
-                        <IconButton className={'button'} href={cardInfo.url} target="_blank">
+                        <IconButton
+                            className={'button'}
+                            href={cardInfo.url}
+                            aria-label={'content-button'}
+                            target="_blank"
+                        >
                             <PublicIcon />
                         </IconButton>
                     )}
                 </div>
                 <div className={'info'}>
                     {cardInfo.srcUrlProject && (
-                        <IconButton className={'button'} href={cardInfo.srcUrlProject} target="_blank">
+                        <IconButton
+                            className={'button'}
+                            href={cardInfo.srcUrlProject}
+                            aria-label={'source-button'}
+                            target="_blank"
+                        >
                             <GitHubIcon />
                         </IconButton>
                     )}
