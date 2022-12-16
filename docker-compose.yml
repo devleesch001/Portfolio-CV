@@ -10,7 +10,8 @@ services:
             - traefik.http.routers.devleeschauwer.rule=Host(`devleeschauwer.fr`) || Host(`www.devleeschauwer.fr`) || (Host(`omniumcorp.fr`) && PathPrefix(`/devleeschauwer`))
             - traefik.http.routers.devleeschauwer.tls.certresolver=resolver
             - traefik.http.services.devleeschauwer.loadbalancer.server.port=80
-            - traefik.http.middlewares.devleeschauwer.headers.customresponseheaders.Cache-control='max-age=600'
+            - traefik.http.middlewares.devleeschauwer.headers.customresponseheaders.Cache-control=max-age=600
+            - traefik.http.routers.devleeschauwer.middlewares=devleeschauwer
         networks:
             - proxy
             - default
