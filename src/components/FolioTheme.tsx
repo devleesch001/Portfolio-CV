@@ -50,6 +50,25 @@ export const lightTheme: Theme = createTheme({
                 },
             },
         },
+        MuiToggleButton: {
+            styleOverrides: {
+                root: {
+                    ':hover': {
+                        color: blackColorSet.dark,
+                        background: redColorSet.contrastText,
+                    },
+                    color: redColorSet.contrastText,
+                    '&.Mui-selected': {
+                        color: blackColorSet.dark,
+                        backgroundColor: redColorSet.contrastText,
+                    },
+                    '&.Mui-selected:hover': {
+                        color: blackColorSet.dark,
+                        background: redColorSet.contrastText,
+                    },
+                },
+            },
+        },
     },
 });
 
@@ -70,7 +89,7 @@ export const darkTheme: Theme = createTheme({
         MuiTabs: {
             styleOverrides: {
                 indicator: {
-                    backgroundColor: redColorSet.dark,
+                    backgroundColor: redColorSet.main,
                 },
             },
         },
@@ -78,12 +97,36 @@ export const darkTheme: Theme = createTheme({
             styleOverrides: {
                 root: {
                     ':hover': {
-                        color: redColorSet.dark,
+                        color: redColorSet.main,
                         background: blackColorSet.contrastText,
                     },
                     color: blackColorSet.contrastText,
                     '&.Mui-selected': {
-                        color: redColorSet.dark,
+                        color: redColorSet.main,
+                        backgroundColor: blackColorSet.contrastText,
+                    },
+                },
+            },
+        },
+        MuiToggleButtonGroup: {
+            styleOverrides: {
+                root: {
+                    ':hover&:': {
+                        backgroundColor: redColorSet.dark,
+                    },
+                },
+            },
+        },
+        MuiToggleButton: {
+            styleOverrides: {
+                root: {
+                    // ':hover': {
+                    //     color: redColorSet.main,
+                    //     background: blackColorSet.contrastText,
+                    // },
+                    color: blackColorSet.contrastText,
+                    '&.Mui-selected': {
+                        color: redColorSet.main,
                         backgroundColor: blackColorSet.contrastText,
                     },
                 },

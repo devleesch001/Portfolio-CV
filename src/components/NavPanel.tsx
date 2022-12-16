@@ -7,12 +7,14 @@ import { Box, Drawer, Tab, Tabs } from '@mui/material';
 
 import { Title } from './Main';
 import { appConst } from '../App';
+import ThemeSelector from './ThemeSelector';
 
 interface DrawerContentInterface {
     menu: Title[];
     sectionRefs: React.MutableRefObject<HTMLDivElement | null>[];
     handleDrawerToggle?(): void;
 }
+
 const DrawerContent: FC<DrawerContentInterface> = (props) => {
     const { menu, sectionRefs, handleDrawerToggle } = props;
 
@@ -25,31 +27,55 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
     };
 
     return (
-        <Tabs
-            value={activeIndex}
-            orientation="vertical"
-            indicatorColor="secondary"
-            textColor="secondary"
-            aria-label="nav-tabs"
-            className={'folio-tabs'}
-            selectionFollowsFocus
-            sx={{
-                marginTop: 'calc((100vh - 432px) / 2)',
-            }}
-        >
-            {map(menu, ({ title, icon }, index) => (
-                <Tab
-                    key={index}
-                    onClick={() => {
-                        sectionRefs[index]?.current?.scrollIntoView({ behavior: 'smooth' });
-                        closeHandler();
-                    }}
-                    label={title}
-                    icon={icon}
-                    iconPosition={'start'}
-                />
-            ))}
-        </Tabs>
+        <>
+            <Tabs
+                value={activeIndex}
+                orientation="vertical"
+                indicatorColor="secondary"
+                textColor="secondary"
+                aria-label="nav-tabs"
+                className={'folio-tabs'}
+                selectionFollowsFocus
+                sx={{
+                    marginTop: 'calc((100vh - 432px) / 2)',
+                }}
+            >
+                {map(menu, ({ title, icon }, index) => (
+                    <Tab
+                        key={index}
+                        onClick={() => {
+                            sectionRefs[index]?.current?.scrollIntoView({ behavior: 'smooth' });
+                            closeHandler();
+                        }}
+                        label={title}
+                        icon={icon}
+                        iconPosition={'start'}
+                    />
+                ))}
+            </Tabs>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    display: 'flex',
+                    width: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'text.primary',
+                    bottom: 0,
+                    py: 3,
+                }}
+            >
+                <ThemeSelector />
+            </Box>
+            {/*
+            <Box
+            >
+                <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                </IconButton>
+            </Box>
+            */}
+        </>
     );
 };
 
