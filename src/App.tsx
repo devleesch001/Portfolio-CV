@@ -3,7 +3,7 @@ import React from 'react';
 import Main from './components/Main';
 
 import { ThemeProvider, useMediaQuery } from '@mui/material';
-import { lightTheme, darkTheme } from './components/FolioTheme';
+import { lightTheme, darkTheme } from './themes/FolioTheme';
 import './styles/App.css';
 
 import { CacheProvider } from '@emotion/react';
@@ -11,6 +11,7 @@ import createCache from '@emotion/cache';
 
 export const ColorModeContext = React.createContext({
     mode: 'light',
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     selectColorMode: (mode: themeSelectorType) => {
         return;
     },

@@ -120,14 +120,14 @@ export const darkTheme: Theme = createTheme({
         MuiToggleButton: {
             styleOverrides: {
                 root: {
-                    // ':hover': {
-                    //     color: redColorSet.main,
-                    //     background: blackColorSet.contrastText,
-                    // },
                     color: blackColorSet.contrastText,
                     '&.Mui-selected': {
                         color: redColorSet.main,
                         backgroundColor: blackColorSet.contrastText,
+                    },
+                    '&.Mui-selected:hover': {
+                        color: blackColorSet.dark,
+                        background: redColorSet.contrastText,
                     },
                 },
             },

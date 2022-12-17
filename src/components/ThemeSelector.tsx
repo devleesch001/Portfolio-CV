@@ -11,8 +11,10 @@ import BrightnessAutoIcon from '@mui/icons-material/BrightnessAuto';
 const ThemeSelector: React.FC = () => {
     const colorMode = React.useContext(ColorModeContext);
 
-    const handleChange = (event: React.MouseEvent<HTMLElement>, newValue: themeSelectorType) => {
-        colorMode.selectColorMode(newValue);
+    const handleChange = (event: React.MouseEvent<HTMLElement>, newValue: themeSelectorType | null) => {
+        if (newValue !== null) {
+            colorMode.selectColorMode(newValue);
+        }
     };
 
     return (
