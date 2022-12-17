@@ -8,10 +8,12 @@ import '../styles/App.css';
 
 import { useTranslation } from 'react-i18next';
 
-import GitHubIcon from '@mui/icons-material/GitHub';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import PhoneIcon from '@mui/icons-material/Phone';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
+import { FaGitlab } from 'react-icons/fa';
 
 interface ContactsCardInterface {
     logo: ReactElement;
@@ -32,8 +34,18 @@ const itemData: ContactsCardInterface[] = [
     // },
     {
         logo: <GitHubIcon fontSize={'inherit'} />,
-        content: 'github.com',
+        content: 'github',
         url: 'https://github.com/devleesch001',
+    },
+    {
+        logo: <FaGitlab fontSize={'inherit'} />,
+        content: 'gitlab',
+        url: 'https://gitlab.com/devleesch',
+    },
+    {
+        logo: <LinkedInIcon fontSize={'inherit'} />,
+        content: 'linkedin',
+        url: 'https://www.linkedin.com/in/alexis-devleeschauwer/',
     },
 ];
 
@@ -49,7 +61,7 @@ const Contacts = () => {
             </Box>
             <Grid container spacing={5} justifyContent="center" alignContent={'center'} marginTop={2}>
                 {itemData.map((item, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
+                    <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
                         <ProjectCard cardInfo={item} />
                     </Grid>
                 ))}
@@ -66,28 +78,8 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const { cardInfo } = props;
 
-    // return (
-    //     <Paper>
-    //             <Box
-    //                 p={5}
-    //                 sx={{
-    //                     display: 'flex',
-    //                     alignItems: 'center',
-    //                     flexDirection: 'column',
-    //                     p: 1,
-    //                     m: 1,
-    //                     borderRadius: 1,
-    //                 }}
-    //             >
-    //                 <IconButton sx={{ fontSize: '100px' }}>{cardInfo.logo}</IconButton>
-    //                 <Link variant={'h5'} underline="hover" href={cardInfo.url}>
-    //                     {cardInfo.content}
-    //                 </Link>
-    //             </Box>
-    //         </Paper>
-    // )
     return (
-        <Button variant="contained" href={cardInfo.url} sx={{ textTransform: 'none' }} fullWidth>
+        <Button variant="contained" href={cardInfo.url} target={'_blank'} sx={{ textTransform: 'none' }} fullWidth>
             <Box
                 p={5}
                 sx={{
