@@ -64,17 +64,19 @@ const Main: FC = () => {
     return (
         <Paper>
             <Box>
-                <Slide direction={'up'} in={isSmallScreen && activeIndex !== 0} mountOnEnter unmountOnExit>
-                    <Fab
-                        size="medium"
-                        aria-label={'fab-nav-up'}
-                        color="primary"
-                        onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
-                        sx={{ position: 'fixed', bottom: 16, right: 16 }}
-                    >
-                        <KeyboardArrowUpIcon />
-                    </Fab>
-                </Slide>
+                {isSmallScreen && (
+                    <Slide direction={'up'} in={activeIndex !== 0} mountOnEnter unmountOnExit>
+                        <Fab
+                            size="medium"
+                            aria-label={'fab-nav-up'}
+                            color="primary"
+                            onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
+                            sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                        >
+                            <KeyboardArrowUpIcon />
+                        </Fab>
+                    </Slide>
+                )}
 
                 <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
                     <NavBar handleDrawerToggle={handleDrawerToggle} />
