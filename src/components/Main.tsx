@@ -14,7 +14,7 @@ import Contacts from './Contacts';
 
 import Work from './Work';
 
-import { Box, Divider, Fab, Grid, Paper, useMediaQuery } from '@mui/material';
+import { Box, Divider, Fab, Grid, Paper, Slide, useMediaQuery } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SchoolIcon from '@mui/icons-material/School';
@@ -64,8 +64,9 @@ const Main: FC = () => {
     return (
         <Paper>
             <Box>
-                {isSmallScreen && activeIndex !== 0 && (
+                <Slide direction={'up'} in={isSmallScreen && activeIndex !== 0} mountOnEnter unmountOnExit>
                     <Fab
+                        size="medium"
                         aria-label={'fab-nav-up'}
                         color="primary"
                         onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
@@ -73,7 +74,7 @@ const Main: FC = () => {
                     >
                         <KeyboardArrowUpIcon />
                     </Fab>
-                )}
+                </Slide>
 
                 <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
                     <NavBar handleDrawerToggle={handleDrawerToggle} />
