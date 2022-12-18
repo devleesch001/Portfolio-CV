@@ -141,7 +141,7 @@ const Main: FC = () => {
                     </Grid>
                     <Divider sx={{ width: '80%' }} />
                     <Grid
-                        height={'95vh'}
+                        minHeight={'95vh'}
                         item
                         key={5}
                         ref={sectionRefs[5]}
