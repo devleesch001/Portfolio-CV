@@ -25,6 +25,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import { Theme } from '@mui/material/styles';
 import useScrollSpy from 'react-use-scrollspy';
+import Techno from './Techno';
 
 export interface Title {
     hash: string;
@@ -138,6 +139,17 @@ const Main: FC = () => {
                         sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
                     >
                         <Projects />
+                    </Grid>
+                    <Divider sx={{ width: '80%' }} />
+                    <Grid
+                        item
+                        key={4}
+                        ref={sectionRefs[4]}
+                        xs={12}
+                        marginY={5}
+                        sx={{ maxWidth: { lg: '1200px' }, marginX: { lg: 10 } }}
+                    >
+                        <Techno />
                     </Grid>
                     <Divider sx={{ width: '80%' }} />
                     <Grid
