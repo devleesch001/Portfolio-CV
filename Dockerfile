@@ -1,5 +1,4 @@
 ARG NODE_VERSION=16
-ARG NPM_VERSION=8.6.0
 
 FROM node:${NODE_VERSION}
 
@@ -10,7 +9,6 @@ COPY package*.json ./
 
 ENV NODE_ENV=production
 
-RUN npm install -g npm@${NPM_VERSION}
 RUN npm install -g serve
 RUN npm install
 
@@ -20,4 +18,4 @@ RUN npm run build
 
 EXPOSE 80
 
-CMD serve -s build -l 80
+CMD serve -s dist -l 80
