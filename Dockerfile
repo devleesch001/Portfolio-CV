@@ -4,12 +4,12 @@ FROM node:${NODE_VERSION}
 
 WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-COPY package*.json ./
-
 ENV NODE_ENV=production
 
 RUN npm install -g serve
+
+COPY package.json ./
+
 RUN npm install
 
 COPY . ./
