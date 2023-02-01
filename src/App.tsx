@@ -9,6 +9,11 @@ import './styles/App.css';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
+import ReactGA from 'react-ga4';
+const TRACKING_ID = 'G-JXW259F8LX';
+ReactGA.initialize(TRACKING_ID);
+ReactGA.send('pageview');
+
 export const ColorModeContext = React.createContext({
     mode: 'light',
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
