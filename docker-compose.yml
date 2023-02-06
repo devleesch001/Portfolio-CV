@@ -1,7 +1,9 @@
 version: '3.8'
 services:
     folio:
-        build: .
+        build:
+            context: .
+            target: portfolio-cv-prod
         restart: always
         labels:
             - traefik.enable=true
