@@ -7,11 +7,11 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 RUN npm install -g serve
 
-COPY package.json ./
+COPY ../package.json ./
 
 RUN npm install
 
-COPY . ./
+COPY .. ./
 
 
 FROM portfolio-cv-base as portfolio-cv-prod

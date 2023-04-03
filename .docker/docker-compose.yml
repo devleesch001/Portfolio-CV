@@ -2,7 +2,7 @@ version: '3.8'
 services:
     folio:
         build:
-            context: .
+            context: ..
             target: portfolio-cv-prod
         restart: always
         labels:
