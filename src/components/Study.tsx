@@ -91,7 +91,7 @@ const Study = () => {
                                 variant={'h5'}
                             >
                                 <Box p={1}>
-                                    <Typography variant={'h5'}>{element.date}</Typography>
+                                    <Typography variant="h5">{element.date}</Typography>
                                 </Box>
                             </TimelineOppositeContent>
                         )}
@@ -113,13 +113,13 @@ const Study = () => {
                             }
                         >
                             <Paper elevation={3}>
-                                <Box p={2} textAlign={'justify'}>
-                                    {!isAlternate && <Typography variant={'subtitle2'}>{element.date}</Typography>}
-                                    <Typography paddingTop={1} variant={'h5'}>
+                                <Box p={2} textAlign="justify">
+                                    {!isAlternate && <Typography variant="subtitle2">{element.date}</Typography>}
+                                    <Typography paddingTop={1} variant="h5">
                                         {element.school}
                                     </Typography>
                                     <Typography paddingTop={1}>{element.degree}</Typography>
-                                    <Typography paddingTop={1} variant={'h6'}>
+                                    <Typography paddingTop={1} variant="h6">
                                         {element.city}
                                     </Typography>
                                 </Box>
