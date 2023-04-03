@@ -3,6 +3,7 @@ services:
     folio:
         build:
             context: ..
+            dockerfile: .docker/Dockerfile
             target: portfolio-cv-prod
         restart: always
         labels:
