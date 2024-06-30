@@ -30,7 +30,7 @@ interface workInterface {
 const workList: workInterface[] = [
     {
         date: '2022 - 2024',
-        title: 'Développeur Full-Stack et Linux Intégré',
+        title: 'Cadre - Développeur Full-Stack et Linux Intégré',
         duration: '24 mois',
         company: 'Pyrescom',
         subject: 'Platform WEB - API restful Golang, interface web VueJS. Logiciel sur Linux embarqué OpenWRT en C',
