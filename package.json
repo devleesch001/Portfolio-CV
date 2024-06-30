@@ -3,7 +3,7 @@
     "version": "1.4.0",
     "private": true,
     "type": "module",
-    "homepage": "https://devleesch001.github.io/Portfolio-CV",
+    "homepage": "https://www.devleeschauwer.fr/",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
