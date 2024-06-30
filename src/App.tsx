@@ -1,13 +1,14 @@
 import React from 'react';
-
 import Main from './components/Main';
 
-import { ThemeProvider, useMediaQuery } from '@mui/material';
-import { lightTheme, darkTheme } from './themes/FolioTheme';
 import './styles/App.css';
 
+import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+
+import { lightTheme, darkTheme } from './themes/FolioTheme';
+import reportWebVitals, { Metric } from './reportWebVitals';
 
 import ReactGA from 'react-ga4';
 const TRACKING_ID = 'G-JXW259F8LX';
@@ -63,12 +64,12 @@ const App = () => {
             mode === 'light'
                 ? lightTheme
                 : mode === 'dark'
-                ? darkTheme
-                : mode === 'auto'
-                ? prefersDarkMode
-                    ? darkTheme
-                    : lightTheme
-                : lightTheme,
+                  ? darkTheme
+                  : mode === 'auto'
+                    ? prefersDarkMode
+                        ? darkTheme
+                        : lightTheme
+                    : lightTheme,
         [mode, prefersDarkMode]
     );
 
@@ -82,5 +83,19 @@ const App = () => {
         </CacheProvider>
     );
 };
+
+function sendToAnalytics(metric: Metric) {
+    const body = JSON.stringify(metric);
+    const url = 'https://example.com/analytics';
+
+    // Use `navigator.sendBeacon()` if available, falling back to `fetch()`
+    if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, body);
+    } else {
+        fetch(url, { body, method: 'POST', keepalive: true }).then();
+    }
+}
+
+reportWebVitals(sendToAnalytics);
 
 export default App;

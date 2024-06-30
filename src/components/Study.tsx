@@ -24,10 +24,17 @@ interface studyInterface {
     date: string;
     degree: string;
     city: string;
+    mention?: string;
 }
 
 const studyList: studyInterface[] = [
-    { school: 'IMERIR', date: '2020 - 2023', degree: 'Manager système informatique et robotique', city: 'Perpignan' },
+    {
+        school: 'IMERIR',
+        date: '2020 - 2023',
+        degree: 'Manager système informatique et robotique',
+        city: 'Perpignan',
+        mention: 'Bien',
+    },
     {
         school: 'Simplon.co',
         date: '2019 - 2020',
@@ -40,7 +47,7 @@ const studyList: studyInterface[] = [
         degree: 'BTS Système Numérique Informatique et Réseaux',
         city: 'Carcassonne',
     },
-    { school: 'LPO JULES FIL', date: '2014 - 2017', degree: 'BAC PRO SEN TR', city: 'Carcassonne' },
+    { school: 'LPO JULES FIL', date: '2014 - 2017', degree: 'BAC PRO SEN TR', city: 'Carcassonne', mention: 'Bien' },
 ];
 const Study = () => {
     const { t } = useTranslation();
@@ -119,6 +126,7 @@ const Study = () => {
                                         {element.school}
                                     </Typography>
                                     <Typography paddingTop={1}>{element.degree}</Typography>
+                                    {element.mention && <Typography>Mention {element.mention}</Typography>}
                                     <Typography paddingTop={1} variant={'h6'}>
                                         {element.city}
                                     </Typography>
