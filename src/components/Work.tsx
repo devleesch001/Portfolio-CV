@@ -29,11 +29,19 @@ interface workInterface {
 
 const workList: workInterface[] = [
     {
+        date: '2022 - 2024',
+        title: 'Cadre - Développeur Full-Stack et Linux Intégré',
+        duration: '24 mois',
+        company: 'Pyrescom',
+        subject: 'Platform WEB - API restful Golang, interface web VueJS. Logiciel sur Linux embarqué OpenWRT en C',
+        city: 'Perpignan - Toulouges',
+    },
+    {
         date: '2020 - 2022',
         title: 'Apprenti – Développeur Back-end',
         duration: '18 mois',
         company: 'NumericWave',
-        subject: 'PHP8 Projet symfony, Api restful API-Platforme',
+        subject: 'PHP8 Projet symfony, API restful API-Platforme',
         city: 'Perpignan',
     },
     {

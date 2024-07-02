@@ -27,7 +27,10 @@ const About = () => {
             <Grid item xs={12} md={9}>
                 <Paper elevation={3}>
                     <Typography textAlign={'justify'} p={2}>
-                        {t('about.content')}
+                        {t('about.me')}
+                    </Typography>
+                    <Typography textAlign={'justify'} px={2} pb={2}>
+                        {t('about.pro')}
                     </Typography>
                 </Paper>
             </Grid>

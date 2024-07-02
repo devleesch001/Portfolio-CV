@@ -1,18 +1,17 @@
-import React, { FC, ReactElement, useRef } from 'react';
+import React, { FC, ReactElement, useRef, lazy } from 'react';
 
 import { appConst } from '../App';
 import { t } from 'i18next';
 
 import TabPanel from './NavPanel';
 import NavBar from './NavBar';
-import Home from './Home';
-import About from './About';
-import Study from './Study';
-import Projects from './Projects';
 
-import Contacts from './Contacts';
-
-import Work from './Work';
+const Home = lazy(() => import('./Home'));
+const About = lazy(() => import('./About'));
+const Study = lazy(() => import('./Study'));
+const Projects = lazy(() => import('./Projects'));
+const Contacts = lazy(() => import('./Contacts'));
+const Work = lazy(() => import('./Work'));
 
 import { Box, Divider, Fab, Grid, Paper, Slide, useMediaQuery } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';

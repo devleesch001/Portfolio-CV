@@ -19,9 +19,7 @@
         "content": ""
     },
     "about": {
-        "content": "Je suis développeur web junior à Perpignan 66. Spécialisé en backend, avec quelques experiences en développement embarqué, ansi qu'en réseaux et infrastructure"
-   },
-    "dev":{
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    }
+        "me": "Je suis passionné par l'informatique, je suis curieux et j'aime apprendre. J'aime également les jeux vidéo.",
+        "pro": "Actuellement ingénieur logiciel à Perpignan (66) spécialisé en backend, notamment sur la remontée de données d'objet connecté. Avec quelques expériences en développement embarqué et Linux intégré, ainsi qu'en réseaux et infrastructure particulièrement avec Docker."
+   }
 }
