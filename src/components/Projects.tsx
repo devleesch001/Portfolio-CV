@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -7,14 +7,14 @@ import '../styles/App.css';
 
 import ProjectImages from '../assets/Projects';
 
-import { Box, Card, CardMedia, Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
+import { Card, CardMedia, Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
 
 import PublicIcon from '@mui/icons-material/Public';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 interface ProjectCardInterface {
     title: string;
-    img: string;
+    img?: string;
     label: string;
     subtitle?: string;
     url?: string;
@@ -54,22 +54,38 @@ const itemData: ProjectCardInterface[] = [
     },
 ];
 
+const filters = ['Tous', 'Iot', 'Web'];
+
 const Projects = () => {
     const { t } = useTranslation();
 
+    const [filter, setFilter] = useState<string>('Tous');
+
     return (
         <>
-            <Box>
-                <Typography textAlign={'center'} variant={'h2'}>
-                    {t('title.project')}
-                </Typography>
-            </Box>
-            <Grid container spacing={5} marginTop={2}>
-                {itemData.map((item, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                        <ProjectCard cardInfo={item} />
-                    </Grid>
+            <Typography textAlign={'center'} variant={'h2'}>
+                {t('title.project')}
+            </Typography>
+            <Tabs
+                value={filter}
+                onChange={(_, v) => setFilter(v)}
+                textColor="secondary"
+                indicatorColor="secondary"
+                centered
+                aria-label="secondary tabs example"
+            >
+                {filters.map((filter) => (
+                    <Tab value={filter} label={filter} />
                 ))}
+            </Tabs>
+            <Grid container spacing={5} marginTop={2}>
+                {itemData
+                    .filter((item) => filter === 'Tous' || item.label === filter)
+                    .map((item, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <ProjectCard cardInfo={item} />
+                        </Grid>
+                    ))}
             </Grid>
         </>
     );
@@ -88,7 +104,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         <Card className={'img-content'}>
             <CardMedia
                 component="img"
-                image={cardInfo.img}
+                image={cardInfo.img ?? ProjectImages.noProject}
                 style={{ filter: 'blur(2.5px)' }}
                 alt={'project image unavailable'}
                 height="100%"

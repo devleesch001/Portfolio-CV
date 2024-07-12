@@ -39,11 +39,11 @@
     position: absolute;
     background: var(--folio-secondary-color);
     color: var(--folio-primary-light-color);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     display: inline-block;
-    padding: 8px 10px;
-    left: 20px;
+    padding: 0.5rem 0.625rem;
+    left: 1.25rem;
     transform: translateY(-40px);
 }
 
@@ -54,11 +54,10 @@
 
 .img-content .img-detail div.action {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 1.25rem;
+    left: 1.25rem;
     opacity: 0;
-    width: 40px;
-    height: 40px;
+
 }
 
 .img-content:hover .img-detail div.action {
@@ -68,11 +67,10 @@
 
 .img-content .img-detail div.info {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 1.25rem;
+    right: 1.25rem;
     opacity: 0;
-    width: 40px;
-    height: 40px;
+
 }
 
 .img-content:hover .img-detail div.info {
@@ -84,8 +82,8 @@
     position: absolute;
     color: var(--folio-primary-text-color);
     top: 80px;
-    margin: 0 0 10px;
-    padding: 0 20px;
+    margin: 0 0 0.625rem;
+    padding: 0 1.25rem;
     opacity: 0;
     transform: translateY(30px);
 }
