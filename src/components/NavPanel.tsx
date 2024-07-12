@@ -1,13 +1,13 @@
 import React, { FC, memo } from 'react';
 
-import { map } from 'lodash';
 import useScrollSpy from 'react-use-scrollspy';
 
-import { Box, Drawer, Tab, Tabs } from '@mui/material';
+import { Box, Drawer } from '@mui/material';
 
 import { Title } from './Main';
 import { appConst } from '../App';
 import ThemeSelector from './ThemeSelector';
+import { NavTab, NavTabs } from './NavTabs';
 
 interface DrawerContentInterface {
     menu: Title[];
@@ -28,7 +28,7 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
 
     return (
         <>
-            <Tabs
+            <NavTabs
                 value={activeIndex}
                 orientation="vertical"
                 indicatorColor="secondary"
@@ -40,8 +40,8 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
                     marginTop: 'calc((100vh - 432px) / 2)',
                 }}
             >
-                {map(menu, ({ title, icon }, index) => (
-                    <Tab
+                {menu.map(({ title, icon }, index) => (
+                    <NavTab
                         key={index}
                         onClick={() => {
                             sectionRefs[index]?.current?.scrollIntoView({ behavior: 'smooth' });
@@ -52,7 +52,7 @@ const DrawerContent: FC<DrawerContentInterface> = (props) => {
                         iconPosition={'start'}
                     />
                 ))}
-            </Tabs>
+            </NavTabs>
             <Box
                 sx={{
                     position: 'absolute',

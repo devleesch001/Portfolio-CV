@@ -96,6 +96,6 @@ function sendToAnalytics(metric: Metric) {
     }
 }
 
-reportWebVitals(sendToAnalytics);
+//reportWebVitals(sendToAnalytics);
 
 export default App;

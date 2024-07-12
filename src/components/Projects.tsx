@@ -7,7 +7,7 @@ import '../styles/App.css';
 
 import ProjectImages from '../assets/Projects';
 
-import { Box, Card, CardMedia, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Card, CardMedia, Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
 
 import PublicIcon from '@mui/icons-material/Public';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -80,6 +80,7 @@ export default memo(Projects);
 interface ProjectCardProps {
     cardInfo: ProjectCardInterface;
 }
+
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const { cardInfo } = props;
 

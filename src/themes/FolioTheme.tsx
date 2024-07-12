@@ -28,28 +28,6 @@ export const lightTheme: Theme = createTheme({
                 },
             },
         },
-        MuiTabs: {
-            styleOverrides: {
-                indicator: {
-                    backgroundColor: blackColorSet.dark,
-                },
-            },
-        },
-        MuiTab: {
-            styleOverrides: {
-                root: {
-                    ':hover': {
-                        color: blackColorSet.dark,
-                        background: redColorSet.contrastText,
-                    },
-                    color: redColorSet.contrastText,
-                    '&.Mui-selected': {
-                        color: blackColorSet.dark,
-                        backgroundColor: redColorSet.contrastText,
-                    },
-                },
-            },
-        },
         MuiToggleButton: {
             styleOverrides: {
                 root: {
@@ -83,28 +61,6 @@ export const darkTheme: Theme = createTheme({
             styleOverrides: {
                 paper: {
                     background: blackColorSet.main,
-                },
-            },
-        },
-        MuiTabs: {
-            styleOverrides: {
-                indicator: {
-                    backgroundColor: redColorSet.main,
-                },
-            },
-        },
-        MuiTab: {
-            styleOverrides: {
-                root: {
-                    ':hover': {
-                        color: redColorSet.main,
-                        background: blackColorSet.contrastText,
-                    },
-                    color: blackColorSet.contrastText,
-                    '&.Mui-selected': {
-                        color: redColorSet.main,
-                        backgroundColor: blackColorSet.contrastText,
-                    },
                 },
             },
         },
